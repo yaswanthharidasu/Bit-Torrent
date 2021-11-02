@@ -25,6 +25,7 @@ public:
     void parseArgs(int argc, char* argv[]);
     void connectToTracker();
     void displayInfo();
+    void communicateTracker();
 };
 
 void Peer::parseArgs(int argc, char* argv[]) {
@@ -42,7 +43,7 @@ void Peer::parseArgs(int argc, char* argv[]) {
 
 void Peer::displayInfo() {
     printf("%s------------------------------------------------------------%s\n", KYEL, RESET);
-    printf("\t%sPEER%s ---------> %sIP:%s %s, %sPORT:%s %d\n", KRED, RESET, KYEL, RESET, &peerIP[0], KYEL, RESET, peerPort);
+    printf("\t%sPEER%s ---------> %sIP:%s %s %sPORT:%s %d\n", KRED, RESET, KYEL, RESET, &peerIP[0], KYEL, RESET, peerPort);
     printf("%s------------------------------------------------------------%s\n", KYEL, RESET);
 
 }
@@ -52,12 +53,16 @@ void Peer::connectToTracker() {
     if ((tracker_desc = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
         perror("Create socket");
         exit(1);
-    }   
+    }
 
     // Assigning custom IP and port to the peer
     peerAddr.sin_family = AF_INET;
-    peerAddr.sin_addr.s_addr = inet_addr(&peerIP[0]);
-    peerAddr.sin_port = htons(peerPort);  
+    peerAddr.sin_port = htons(peerPort);
+    if (inet_pton(AF_INET, &peerIP[0], &peerAddr.sin_addr.s_addr) != 1) {
+        perror("pton");
+        exit(1);
+    }
+
     // Binding the IP and port to the peer
     bind(tracker_desc, (struct sockaddr*)&peerAddr, sizeof(peerAddr));
 
@@ -66,11 +71,14 @@ void Peer::connectToTracker() {
         perror("Socket options");
         exit(1);
     }
+
     // Assign the IP address and port number 
     trackerAddr.sin_family = AF_INET;
-    // peer.sin_addr.s_addr = inet_addr(&peerIP[0]);
-    inet_pton(AF_INET, &trackerIP[0], &trackerAddr.sin_addr.s_addr);
     trackerAddr.sin_port = htons(trackerPort);
+    if (inet_pton(AF_INET, &trackerIP[0], &trackerAddr.sin_addr.s_addr) != 1) {
+        perror("pton");
+        exit(1);
+    }
 
     // Connecting to server
     if (connect(tracker_desc, (struct sockaddr*)&trackerAddr, sizeof(trackerAddr)) == -1) {
@@ -78,32 +86,41 @@ void Peer::connectToTracker() {
         exit(1);
     }
     puts("Connected to tracker...");
+
+    communicateTracker();
+}
+
+void Peer::communicateTracker() {
     char reply[200];
-    string input;
     while (true) {
+        string input;
         cout << ">> ";
         getline(cin, input);
         if (input.length() <= 0)
             continue;
 
-        write(tracker_desc, &input[0], sizeof(input));
-
         vector<string> words = splitString(input);
-        if (words[0] == "create_user") {
+        if (words[0] == "logout" || words[0] == "list_users") {
+            if (username.length() == 0) {
+                cout << "zero" << endl;
+                string buff = "none";
+                input += " " + buff;
+                // send(tracker_desc, &buff[0], buff.length(), 0);
+            }
+            else {
+                cout << "not zero" << endl;
+                // send(tracker_desc, &username[0], username.length(), 0);
+                // cout << "Not zero bottom" << endl;
+                input += " " + username;
+            }
+        }
+        else if (words[0] == "create_user" || words[0] == "login") {
             username = words[1];
             password = words[2];
         }
-        else if (words[0] == "login") {
-            username = words[1];
-            password = words[2];
-            string loginDetails = peerIP + " " + to_string(peerPort);
-            write(tracker_desc, &loginDetails[0], loginDetails.length());
-        }
-        else if (words[0] == "logout") {
-            write(tracker_desc, &username[0], username.length());
-        }
+        send(tracker_desc, &input[0], sizeof(input), 0);
         memset(reply, 0, sizeof(reply));
-        read(tracker_desc, reply, sizeof(reply));
+        recv(tracker_desc, reply, sizeof(reply), 0);
         puts(reply);
     }
 }
@@ -120,8 +137,6 @@ int main(int argc, char* argv[]) {
     p.parseArgs(argc, argv);
     p.displayInfo();
     p.connectToTracker();
-    // readInput();
-
 
     return 0;
 }

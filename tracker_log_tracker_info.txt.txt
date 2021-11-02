@@ -1,4 +1,0 @@
-Assigning tracker details
-Completed assigning tracker details
-Socket Created
-Socket options set

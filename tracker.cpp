@@ -32,7 +32,8 @@ public:
     void processCommand(string command, int desc);
     void create_user(string username, string password, int desc);
     void login(string username, string password, int desc);
-    void logout(int desc);
+    void logout(string username, int desc);
+    void list_users(string myself, int desc);
 };
 
 void Tracker::parseArgs(int argc, char* argv[]) {
@@ -56,7 +57,7 @@ void Tracker::parseArgs(int argc, char* argv[]) {
 
 void Tracker::displayInfo() {
     printf("%s------------------------------------------------------------%s\n", KYEL, RESET);
-    printf("\t%sTRACKER%s ---------> %sIP:%s %s, %sPORT:%s %d\n", KRED, RESET, KYEL, RESET, &trackerIP[0], KYEL, RESET, trackerPort);
+    printf("\t%sTRACKER%s ---------> %sIP:%s %s %sPORT:%s %d\n", KRED, RESET, KYEL, RESET, &trackerIP[0], KYEL, RESET, trackerPort);
     printf("%s------------------------------------------------------------%s\n", KYEL, RESET);
 }
 
@@ -100,20 +101,24 @@ void Tracker::connectToPeer() {
     }
     log.printLog("Binded the socket\n");
 
-    // Listen for the connectToPeerions
+    // Listen for the connectToPeers
     listen(tracker_desc, 10);
     puts("Listening...");
 
     int p = sizeof(struct sockaddr_in);
     while (true) {
+        // Accepting the connection
         if ((peer_desc = accept(tracker_desc, (struct sockaddr*)&peerAddr, (socklen_t*)&p)) < 0) {
             perror("Accept peer Connection");
             exit(1);
         }
-        printf("....Incoming Connection from %sIP:%s %s %sPORT:%s %d | %sCONNECTED%s\n", KYEL, RESET, inet_ntoa(peerAddr.sin_addr), KYEL, RESET, ntohs(peerAddr.sin_port), KGRN, RESET);
-        // pthread_create()
+        printf("....Incoming Connection from %sIP:%s %s %sPORT:%s %d | %sCONNECTED%s\n",
+            KYEL, RESET, inet_ntoa(peerAddr.sin_addr), KYEL, RESET, ntohs(peerAddr.sin_port), KGRN, RESET);
+
+        // Creating threads for each peer
         peerThreads.push_back(thread(&Tracker::trackerAsServer, this, peer_desc));
     }
+
     // Waiting for the main to stop until all threads are executed
     for (int i = 0; i < peerThreads.size(); i++) {
         if (peerThreads[i].joinable())
@@ -125,12 +130,12 @@ void Tracker::trackerAsServer(int desc) {
     while (true) {
         char command[200];
         memset(command, 0, sizeof(command));
-        read(desc, command, sizeof(command));
+        // Read command from peer
+        recv(desc, command, sizeof(command), 0);
         if (strlen(command) <= 0)
             continue;
         puts(command);
         processCommand(command, desc);
-        // write(desc, &reply[0], reply.length());
     }
 }
 
@@ -141,7 +146,7 @@ void Tracker::processCommand(string command, int desc) {
         words[0] == "login" && words.size() < 3
         ) {
         reply = "Invalid Arguments";
-        write(desc, &reply[0], reply.length());
+        send(desc, &reply[0], reply.length(), 0);
     }
     else if (words[0] == "create_user") {
         create_user(words[1], words[2], desc);
@@ -150,7 +155,15 @@ void Tracker::processCommand(string command, int desc) {
         login(words[1], words[2], desc);
     }
     else if (words[0] == "logout") {
-        logout(desc);
+        logout(words[1], desc);
+    }
+    else if (words[0] == "list_users") {
+        cout << "listing...." << endl;
+        list_users(words[1], desc);
+    }
+    else {
+        reply = "Invalid Command";
+        send(desc, &reply[0], reply.length(), 0);
     }
 }
 
@@ -168,16 +181,10 @@ void Tracker::create_user(string username, string password, int desc) {
         reply = "Registration Completed Successfully";
         log.printLog("User '" + username + "' registered succesfully\n");
     }
-    write(desc, &reply[0], reply.length());
+    send(desc, &reply[0], reply.length(), 0);
 }
 
 void Tracker::login(string username, string password, int desc) {
-    char buff[200];
-    // Reading port and ip from the peer
-    read(desc, buff, sizeof(buff));
-
-    vector<string> ipPortDetails = splitString(buff);
-
     string reply;
     if (allPeers.find(username) == allPeers.end())
         reply = "User not found";
@@ -187,19 +194,20 @@ void Tracker::login(string username, string password, int desc) {
         reply = "Incorrect password";
     else {
         allPeers[username].loggedIn = true;
-        allPeers[username].ip = ipPortDetails[0];
-        allPeers[username].port = stoi(ipPortDetails[1]);
+        allPeers[username].ip = inet_ntoa(peerAddr.sin_addr);
+        allPeers[username].port = ntohs(peerAddr.sin_port);
         reply = "Logged in successfully";
-        log.printLog("User '" + username + "'logged in with IP ADDR: " + allPeers[username].ip + " PORT: " + to_string(allPeers[username].port) + "\n");
+        log.printLog("User '" + username + "'logged in with IP ADDR: " +
+            allPeers[username].ip + " PORT: " + to_string(allPeers[username].port) + "\n");
     }
-    write(desc, &reply[0], reply.length());
+    send(desc, &reply[0], reply.length(), 0);
 }
 
-void Tracker::logout(int desc) {
-    char buff[200];
+void Tracker::logout(string username, int desc) {
+    // char buff[200];
     // Reading username
-    read(desc, buff, sizeof(buff));
-    string username = buff;
+    // recv(desc, buff, sizeof(buff), 0);
+    // string username = buff;
     string reply;
     if (username == "none" || allPeers[username].loggedIn == false) {
         cout << username << endl;
@@ -210,8 +218,32 @@ void Tracker::logout(int desc) {
         reply = "Logged out successfully";
         log.printLog("User '" + username + "'logged out\n");
     }
-    write(desc, &reply[0], reply.length());
+    send(desc, &reply[0], reply.length(), 0);
 }
+
+void Tracker::list_users(string myself, int desc) {
+    // char buff[200] = { 0 };
+    // Reading username
+    // cout << "read" << endl;
+    // bzero(buff, sizeof(buff));
+    // recv(desc, buff, sizeof(buff), 0);
+    // string myself = buff;
+    // cout << "myself:" << myself << endl;
+    string users;
+    int count = 0;
+    for (auto it : allPeers) {
+        if (it.second.loggedIn && it.second.username != myself) {
+            users += it.first + "\n";
+            count++;
+        }
+    }
+    if (count == 0) {
+        users = "No active users";
+    }
+    // send(desc, )
+    send(desc, &users[0], users.length(), 0);
+}
+
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
