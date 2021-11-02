@@ -5,10 +5,7 @@ Socket options set
 Binded the socket
 User 'yash' registered succesfully
 User 'yash'logged in with IP ADDR: 127.0.0.1 PORT: 4000
-User 'hari' registered succesfully
-User 'hari'logged in with IP ADDR: 127.0.0.1 PORT: 4003
-User 'yaswanth' registered succesfully
-User 'yaswanth'logged in with IP ADDR: 127.0.0.1 PORT: 4003
 User 'haridasu' registered succesfully
-User 'haridasu'logged in with IP ADDR: 127.0.0.1 PORT: 4003
-User 'yash'logged out
+User 'haridasu'logged in with IP ADDR: 127.0.0.1 PORT: 4001
+User 'haridasuyaswanth' registered succesfully
+User 'haridasuyaswanth'logged in with IP ADDR: 127.0.0.1 PORT: 4002

@@ -1,15 +1,7 @@
-#include<iostream>
-#include<vector>
-#include<sys/socket.h>
-#include<arpa/inet.h>  // struct sockaddr_in
-#include<pthread.h>
-#include<thread>
 #include"log.h"
 #include"common.h"
-#include"utils.h"
-#include<unistd.h>
-#include<string.h>
-#include"color.h"
+#include"tracker_data.h"
+
 class Tracker {
     Log log;
     pthread_t exitThreadId;
@@ -31,9 +23,15 @@ public:
     void displayInfo();
     void processCommand(string command, int desc);
     void create_user(string username, string password, int desc);
-    void login(string username, string password, int desc);
+    void login(string username, string password, string ip, string port, int desc);
     void logout(string username, int desc);
+    void create_group(string group_name, string username, int desc);
     void list_users(string myself, int desc);
+    void list_groups(int desc);
+    void list_requests(string group_name, string username, int desc);
+    void join_group(string group_name, string username, int desc);
+    void leave_group(string group_name, string username, int desc);
+    void accept_request(string group_name, string user, string myusername, int desc);
 };
 
 void Tracker::parseArgs(int argc, char* argv[]) {
@@ -142,27 +140,52 @@ void Tracker::trackerAsServer(int desc) {
 void Tracker::processCommand(string command, int desc) {
     vector<string> words = splitString(command);
     string reply;
-    if ((words[0] == "create_user" && words.size() < 3) ||
-        words[0] == "login" && words.size() < 3
+    if ((words[0] == CREATE_USER && words.size() != 3) ||
+        (words[0] == LOGIN && words.size() != 5) ||
+        (words[0] == LOGOUT && words.size() != 2) ||
+        (words[0] == CREATE_GROUP && words.size() != 3) ||
+        (words[0] == LIST_USERS && words.size() != 2) ||
+        (words[0] == LIST_GROUPS && words.size() != 1) ||
+        (words[0] == JOIN_GROUP && words.size() != 3) ||
+        (words[0] == LEAVE_GROUP && words.size() != 3) ||
+        (words[0] == LIST_REQUESTS && words.size() != 3) ||
+        (words[0] == ACCEPT_REQUEST && words.size() != 4)
         ) {
-        reply = "Invalid Arguments";
+        reply = KYEL "Invalid Arguments" RESET;
         send(desc, &reply[0], reply.length(), 0);
     }
-    else if (words[0] == "create_user") {
+    else if (words[0] == CREATE_USER) {
         create_user(words[1], words[2], desc);
     }
-    else if (words[0] == "login") {
-        login(words[1], words[2], desc);
+    else if (words[0] == LOGIN) {
+        login(words[1], words[2], words[3], words[4], desc);
     }
-    else if (words[0] == "logout") {
+    else if (words[0] == LOGOUT) {
         logout(words[1], desc);
     }
-    else if (words[0] == "list_users") {
-        cout << "listing...." << endl;
+    else if (words[0] == CREATE_GROUP) {
+        create_group(words[1], words[2], desc);
+    }
+    else if (words[0] == LIST_USERS) {
         list_users(words[1], desc);
     }
+    else if (words[0] == LIST_GROUPS) {
+        list_groups(desc);
+    }
+    else if (words[0] == JOIN_GROUP) {
+        join_group(words[1], words[2], desc);
+    }
+    else if (words[0] == LEAVE_GROUP) {
+        leave_group(words[1], words[2], desc);
+    }
+    else if (words[0] == LIST_REQUESTS) {
+        list_requests(words[1], words[2], desc);
+    }
+    else if (words[0] == ACCEPT_REQUEST) {
+        accept_request(words[1], words[2], words[3], desc);
+    }
     else {
-        reply = "Invalid Command";
+        reply = KRED "Invalid Command" RESET;
         send(desc, &reply[0], reply.length(), 0);
     }
 }
@@ -170,7 +193,7 @@ void Tracker::processCommand(string command, int desc) {
 void Tracker::create_user(string username, string password, int desc) {
     string reply;
     if (allPeers.find(username) != allPeers.end()) {
-        reply = "Username/Password already exists";
+        reply = KRED "Username/Password already exists" RESET;
     }
     else {
         peerInfo newPeer;
@@ -178,25 +201,25 @@ void Tracker::create_user(string username, string password, int desc) {
         newPeer.password = password;
         newPeer.loggedIn = false;
         allPeers[username] = newPeer;
-        reply = "Registration Completed Successfully";
+        reply = USER_REGISTER_SUCCESS;
         log.printLog("User '" + username + "' registered succesfully\n");
     }
     send(desc, &reply[0], reply.length(), 0);
 }
 
-void Tracker::login(string username, string password, int desc) {
+void Tracker::login(string username, string password, string ip, string port, int desc) {
     string reply;
     if (allPeers.find(username) == allPeers.end())
-        reply = "User not found";
+        reply = KRED "User not found" RESET;
     else if (allPeers[username].loggedIn)
-        reply = "You already have an active session";
+        reply = KYEL "You already have an active session" RESET;
     else if (allPeers[username].password != password)
-        reply = "Incorrect password";
+        reply = KRED "Incorrect password" RESET;
     else {
         allPeers[username].loggedIn = true;
-        allPeers[username].ip = inet_ntoa(peerAddr.sin_addr);
-        allPeers[username].port = ntohs(peerAddr.sin_port);
-        reply = "Logged in successfully";
+        allPeers[username].ip = ip;
+        allPeers[username].port = stoi(port);
+        reply = LOGIN_SUCCESS;
         log.printLog("User '" + username + "'logged in with IP ADDR: " +
             allPeers[username].ip + " PORT: " + to_string(allPeers[username].port) + "\n");
     }
@@ -204,46 +227,151 @@ void Tracker::login(string username, string password, int desc) {
 }
 
 void Tracker::logout(string username, int desc) {
-    // char buff[200];
-    // Reading username
-    // recv(desc, buff, sizeof(buff), 0);
-    // string username = buff;
     string reply;
-    if (username == "none" || allPeers[username].loggedIn == false) {
-        cout << username << endl;
-        reply = "Did not found any active session";
+    if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Did not found any active session" RESET;
     }
     else if (allPeers[username].loggedIn) {
         allPeers[username].loggedIn = false;
-        reply = "Logged out successfully";
+        reply = LOGIN_SUCCESS;
         log.printLog("User '" + username + "'logged out\n");
     }
     send(desc, &reply[0], reply.length(), 0);
 }
 
+void Tracker::create_group(string group_name, string username, int desc) {
+    string reply;
+    if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Login first to create a group" RESET;
+    }
+    else if (allGroups.find(group_name) != allGroups.end()) {
+        reply = KRED "Group name already exists" RESET;
+    }
+    else {
+        groupInfo newGroup;
+        newGroup.admin = username;
+        allGroups[group_name] = newGroup;
+        reply = GROUP_REGISTER_SUCCESS;
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
 void Tracker::list_users(string myself, int desc) {
-    // char buff[200] = { 0 };
-    // Reading username
-    // cout << "read" << endl;
-    // bzero(buff, sizeof(buff));
-    // recv(desc, buff, sizeof(buff), 0);
-    // string myself = buff;
-    // cout << "myself:" << myself << endl;
-    string users;
+    string reply;
     int count = 0;
     for (auto it : allPeers) {
         if (it.second.loggedIn && it.second.username != myself) {
-            users += it.first + "\n";
+            reply += it.first + "\n";
             count++;
         }
     }
     if (count == 0) {
-        users = "No active users";
+        reply = KYEL "No active users" RESET;
     }
-    // send(desc, )
-    send(desc, &users[0], users.length(), 0);
+    send(desc, &reply[0], reply.length(), 0);
 }
 
+void Tracker::list_groups(int desc) {
+    string reply;
+    if (allGroups.size() == 0) {
+        reply = KYEL "No Groups" RESET;
+    }
+    else {
+        reply = KYEL "Active Groups in Network\n" RESET;
+        reply += KYEL "------------------------" RESET;
+        for (auto it : allGroups) {
+            reply += "\n" + it.first;
+        }
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::list_requests(string group_name, string username, int desc) {
+    string reply;
+    if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allGroups[group_name].admin != username) {
+        reply = KYEL "You're not admin of the group and cannot see the requests" RESET;
+    }
+    else if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Login to see the requests" RESET;
+    }
+    else if (allGroups[group_name].members.size() == 0) {
+        reply = KYEL "No pending requests" RESET;
+    }
+    else {
+        reply = KYEL "Pending requests\n" RESET;
+        reply += KYEL "----------------" RESET;
+        for (auto it : allGroups[group_name].members) {
+            if (it.second == 0) {
+                reply += "\n" + it.first;
+            }
+        }
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::join_group(string group_name, string username, int desc) {
+    string reply;
+    if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Login first to join a group" RESET;
+    }
+    else if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allGroups[group_name].admin == username) {
+        reply = KYEL "You're admin of the group. No need to join again" RESET;
+    }
+    else if (allGroups[group_name].members.find(username) != allGroups[group_name].members.end()) {
+        reply = KYEL "You're already part of the group" RESET;
+    }
+    else {
+        // In pending state
+        allGroups[group_name].members[username] = 0;
+        reply = GROUP_JOIN_SUCCESS;
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::leave_group(string group_name, string username, int desc) {
+    string reply;
+    if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Login first to leave a group" RESET;
+    }
+    else if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allGroups[group_name].admin == username) {
+        reply = KYEL "You're admin of the group. No need to join again" RESET;
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::accept_request(string group_name, string user, string myusername, int desc) {
+    string reply;
+    if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allPeers.find(myusername) == allPeers.end() || allPeers[myusername].loggedIn == false) {
+        reply = KYEL "Login to accept the request" RESET;
+    }
+    else if (allGroups[group_name].admin != myusername) {
+        reply = KRED "You're not admin of the group and cannot accept the requests" RESET;
+    }
+    else if (allGroups[group_name].members.find(user) == allGroups[group_name].members.end()) {
+        reply = KRED "No user request exists with the given id" RESET;
+    }
+    else if (allGroups[group_name].members[user] == 1) {
+        reply = KYEL "User's request has been already accepted" RESET;
+    }
+    else {
+        allGroups[group_name].members[user] = 1;
+        allGroups[group_name].acceptedMembers.push_back(user);
+        reply = KGRN "User's request accepted successfully" RESET;
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
@@ -252,9 +380,8 @@ int main(int argc, char* argv[]) {
     }
     Tracker t;
     t.parseArgs(argc, argv);
+    t.exitThread();
     t.displayInfo();
     t.connectToPeer();
-    t.exitThread();
-
     return 0;
 }

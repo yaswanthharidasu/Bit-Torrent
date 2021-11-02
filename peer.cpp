@@ -1,17 +1,4 @@
-#include<iostream>
-#include<sstream>
-#include<vector>
-#include<string>
-#include<fstream>
-#include<sys/socket.h>
-#include<arpa/inet.h>  // struct sockaddr_in
-#include"utils.h"
-#include<thread>
-#include<unistd.h>
-#include<string.h>
-#include"color.h"
 #include"common.h"
-using namespace std;
 
 class Peer {
     string username, password;
@@ -20,13 +7,22 @@ class Peer {
     int peer_desc, tracker_desc;
     struct sockaddr_in trackerAddr, peerAddr;
     vector<string>trackerDetails;
+    // vector<string>myAdminGroups, myGroups;
 
 public:
+    Peer();
     void parseArgs(int argc, char* argv[]);
     void connectToTracker();
     void displayInfo();
-    void communicateTracker();
+    void communicateWithTracker();
+    void processInput(vector<string>& words, string& input);
+    void processReply(vector<string>& words, string& reply);
 };
+
+Peer::Peer() {
+    username = "###";
+    password = "###";
+}
 
 void Peer::parseArgs(int argc, char* argv[]) {
     // Extract peer IP and Port from the command line arguments
@@ -55,17 +51,6 @@ void Peer::connectToTracker() {
         exit(1);
     }
 
-    // Assigning custom IP and port to the peer
-    peerAddr.sin_family = AF_INET;
-    peerAddr.sin_port = htons(peerPort);
-    if (inet_pton(AF_INET, &peerIP[0], &peerAddr.sin_addr.s_addr) != 1) {
-        perror("pton");
-        exit(1);
-    }
-
-    // Binding the IP and port to the peer
-    bind(tracker_desc, (struct sockaddr*)&peerAddr, sizeof(peerAddr));
-
     int option_value = 1;
     if (setsockopt(tracker_desc, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &option_value, sizeof(option_value)) == -1) {
         perror("Socket options");
@@ -80,6 +65,16 @@ void Peer::connectToTracker() {
         exit(1);
     }
 
+    // Assigning custom IP and port to the peer
+    peerAddr.sin_family = AF_INET;
+    peerAddr.sin_port = htons(peerPort);
+    if (inet_pton(AF_INET, &peerIP[0], &peerAddr.sin_addr.s_addr) != 1) {
+        perror("pton");
+        exit(1);
+    }
+    // Binding the IP and port to the peer
+    bind(tracker_desc, (struct sockaddr*)&peerAddr, sizeof(peerAddr));
+
     // Connecting to server
     if (connect(tracker_desc, (struct sockaddr*)&trackerAddr, sizeof(trackerAddr)) == -1) {
         puts("Failed to connect server");
@@ -87,10 +82,10 @@ void Peer::connectToTracker() {
     }
     puts("Connected to tracker...");
 
-    communicateTracker();
+    communicateWithTracker();
 }
 
-void Peer::communicateTracker() {
+void Peer::communicateWithTracker() {
     char reply[200];
     while (true) {
         string input;
@@ -98,33 +93,47 @@ void Peer::communicateTracker() {
         getline(cin, input);
         if (input.length() <= 0)
             continue;
-
-        vector<string> words = splitString(input);
-        if (words[0] == "logout" || words[0] == "list_users") {
-            if (username.length() == 0) {
-                cout << "zero" << endl;
-                string buff = "none";
-                input += " " + buff;
-                // send(tracker_desc, &buff[0], buff.length(), 0);
-            }
-            else {
-                cout << "not zero" << endl;
-                // send(tracker_desc, &username[0], username.length(), 0);
-                // cout << "Not zero bottom" << endl;
-                input += " " + username;
-            }
-        }
-        else if (words[0] == "create_user" || words[0] == "login") {
-            username = words[1];
-            password = words[2];
-        }
-        send(tracker_desc, &input[0], sizeof(input), 0);
+        vector<string> words;
+        processInput(words, input);
+        send(tracker_desc, &input[0], input.length(), 0);
         memset(reply, 0, sizeof(reply));
         recv(tracker_desc, reply, sizeof(reply), 0);
         puts(reply);
+        string res = reply;
+        processReply(words, res);
     }
 }
 
+void Peer::processInput(vector<string>& words, string& input) {
+    words = splitString(input);
+    if (words[0] == LOGIN) {
+        input += " " + peerIP + " " + to_string(peerPort);
+    }
+    else if (words[0] == LOGOUT ||
+        words[0] == LIST_USERS ||
+        words[0] == CREATE_GROUP ||
+        words[0] == JOIN_GROUP ||
+        words[0] == LEAVE_GROUP ||
+        words[0] == LIST_REQUESTS ||
+        words[0] == ACCEPT_REQUEST
+        ) {
+        input += " " + username;
+    }
+}
+
+void Peer::processReply(vector<string>& words, string& reply) {
+    if ((words[0] == CREATE_USER && reply == USER_REGISTER_SUCCESS) ||
+        (words[0] == LOGIN && reply == LOGIN_SUCCESS)) {
+        username = words[1];
+        password = words[2];
+    }
+    // else if (words[0] == CREATE_GROUP && reply == GROUP_REGISTER_SUCCESS) {
+    //     myAdminGroups.push_back(words[1]);
+    // }
+    // else if (words[0] == JOIN_GROUP && reply == GROUP_JOIN_SUCCESS) {
+    //     myGroups.push_back(words[1]);
+    // }
+}
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
