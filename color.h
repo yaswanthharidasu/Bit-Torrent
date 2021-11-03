@@ -1,8 +1,6 @@
 
-#ifndef COLOR_H
-#define COLOR_H
-
-#include <stdio.h>
+#ifndef __COLOR_H_
+#define __COLOR_H_
 
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"

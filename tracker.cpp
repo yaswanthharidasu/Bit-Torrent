@@ -13,6 +13,11 @@ class Tracker {
 
     int tracker_desc, peer_desc;
     struct sockaddr_in trackerAddr, peerAddr;
+    struct threadArgs {
+        Tracker *t;
+        int desc;
+    };
+
 
 public:
     void parseArgs(int argc, char* argv[]);
@@ -32,6 +37,13 @@ public:
     void join_group(string group_name, string username, int desc);
     void leave_group(string group_name, string username, int desc);
     void accept_request(string group_name, string user, string myusername, int desc);
+
+    static void* serverHandler(void* ptr) {
+        int desc = ((struct threadArgs*)ptr)->desc;
+        ((struct threadArgs*)ptr)->t->trackerAsServer(desc);
+        return 0;
+    }
+
 };
 
 void Tracker::parseArgs(int argc, char* argv[]) {
@@ -104,6 +116,7 @@ void Tracker::connectToPeer() {
     puts("Listening...");
 
     int p = sizeof(struct sockaddr_in);
+    pthread_t id;
     while (true) {
         // Accepting the connection
         if ((peer_desc = accept(tracker_desc, (struct sockaddr*)&peerAddr, (socklen_t*)&p)) < 0) {
@@ -114,14 +127,17 @@ void Tracker::connectToPeer() {
             KYEL, RESET, inet_ntoa(peerAddr.sin_addr), KYEL, RESET, ntohs(peerAddr.sin_port), KGRN, RESET);
 
         // Creating threads for each peer
-        peerThreads.push_back(thread(&Tracker::trackerAsServer, this, peer_desc));
+        threadArgs* args = new threadArgs();
+        args->t = this;
+        args->desc = peer_desc;
+        pthread_create(&id, NULL, &Tracker::serverHandler, (void*)args);
+        // peerThreads.push_back(thread(&Tracker::trackerAsServer, this, peer_desc));
     }
-
     // Waiting for the main to stop until all threads are executed
-    for (int i = 0; i < peerThreads.size(); i++) {
-        if (peerThreads[i].joinable())
-            peerThreads[i].join();
-    }
+    // for (int i = 0; i < peerThreads.size(); i++) {
+    //     if (peerThreads[i].joinable())
+    //         peerThreads[i].join();
+    // }
 }
 
 void Tracker::trackerAsServer(int desc) {
