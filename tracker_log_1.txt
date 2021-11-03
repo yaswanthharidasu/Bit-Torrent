@@ -3,7 +3,7 @@ Completed assigning tracker details
 Socket Created
 Socket options set
 Binded the socket
-User 'yash' registered succesfully
+Incoming connection from IP: 127.0.0.1 PORT: 4000User 'yash' registered succesfully
 User 'yash'logged in with IP ADDR: 127.0.0.1 PORT: 4000
-User 'hari' registered succesfully
+Incoming connection from IP: 127.0.0.1 PORT: 4001User 'hari' registered succesfully
 User 'hari'logged in with IP ADDR: 127.0.0.1 PORT: 4001

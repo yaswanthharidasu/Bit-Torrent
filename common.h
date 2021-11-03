@@ -18,6 +18,8 @@
 
 #include"utils.h"
 #include"color.h"
+#include"log.h"
+
 using namespace std;
 
 // Macros for the commands

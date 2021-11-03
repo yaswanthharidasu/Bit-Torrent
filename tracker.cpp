@@ -1,4 +1,3 @@
-#include"log.h"
 #include"common.h"
 #include"tracker_data.h"
 
@@ -14,10 +13,9 @@ class Tracker {
     int tracker_desc, peer_desc;
     struct sockaddr_in trackerAddr, peerAddr;
     struct threadArgs {
-        Tracker *t;
+        Tracker* t;
         int desc;
     };
-
 
 public:
     void parseArgs(int argc, char* argv[]);
@@ -126,6 +124,9 @@ void Tracker::connectToPeer() {
         printf("....Incoming Connection from %sIP:%s %s %sPORT:%s %d | %sCONNECTED%s\n",
             KYEL, RESET, inet_ntoa(peerAddr.sin_addr), KYEL, RESET, ntohs(peerAddr.sin_port), KGRN, RESET);
 
+        log.printLog("Incoming connection from IP: " + string(inet_ntoa(peerAddr.sin_addr))
+            + " PORT: " + to_string(ntohs(peerAddr.sin_port)));
+
         // Creating threads for each peer
         threadArgs* args = new threadArgs();
         args->t = this;
@@ -199,6 +200,11 @@ void Tracker::processCommand(string command, int desc) {
     }
     else if (words[0] == ACCEPT_REQUEST) {
         accept_request(words[1], words[2], words[3], desc);
+    }
+    else if (words[0] == "send_message") {
+        string user = words[1];
+        reply = allPeers[user].ip + " " + to_string(allPeers[user].port);
+        send(desc, &reply[0], reply.length(), 0);
     }
     else {
         reply = KRED "Invalid Command" RESET;
