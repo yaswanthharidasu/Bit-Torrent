@@ -25,6 +25,16 @@ class Peer {
         int desc;
     };
 
+    struct fileInfo {
+        string location;
+        int noOfChunks;
+        long long lastChunkSize;
+        vector<bool> availableChunks;
+    };
+
+    unordered_map<string, fileInfo> files;
+
+
 public:
     Peer();
     void parseArgs(int argc, char* argv[]);
@@ -151,10 +161,23 @@ void Peer::processInput(vector<string>& words, string& input) {
         words[0] == JOIN_GROUP ||
         words[0] == LEAVE_GROUP ||
         words[0] == LIST_REQUESTS ||
-        words[0] == ACCEPT_REQUEST || 
-        words[0] == UPLOAD_FILE
+        words[0] == ACCEPT_REQUEST
         ) {
         input += " " + username;
+    }
+    else if (words[0] == UPLOAD_FILE) {
+        // Storing the file details on the peer side
+        string hash = SHA1::from_file(words[1]);
+        fileInfo newFile;
+        newFile.location = words[1];
+        chunkDetails(words[1], newFile.noOfChunks, newFile.lastChunkSize);
+        // As this peer is uploading the file, it'll have all the chunks
+        for (int i = 0; i < newFile.noOfChunks; i++) {
+            newFile.availableChunks.push_back(true);
+        }
+        files[hash] = newFile;
+
+        input += " " + username + " " + hash + " " + to_string(newFile.noOfChunks) + " " + to_string(newFile.lastChunkSize);
     }
 }
 
@@ -164,7 +187,7 @@ void Peer::processReply(vector<string>& words, string& reply) {
         username = words[1];
         password = words[2];
     }
-    else if(words[0] == LOGOUT && reply == LOGOUT_SUCCESS){
+    else if (words[0] == LOGOUT && reply == LOGOUT_SUCCESS) {
         username = "###";
         password = "###";
     }

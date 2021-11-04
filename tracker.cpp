@@ -35,8 +35,9 @@ public:
     void join_group(string group_name, string username, int desc);
     void leave_group(string group_name, string username, int desc);
     void accept_request(string group_name, string user, string myusername, int desc);
-    void upload_file(string file_path, string group_name, string username, int desc);
+    void upload_file(string file_path, string group_name, string username, string file_hash, string no_of_chunks, string last_chunk_size, int desc);
     void list_files(string group_name, int desc);
+    void download_file(string group_name, string file_name, string destination, string username, int desc);
 
     static void* serverHandler(void* ptr) {
         int desc = ((struct threadArgs*)ptr)->desc;
@@ -169,7 +170,7 @@ void Tracker::processCommand(string command, int desc) {
         (words[0] == LEAVE_GROUP && words.size() != 3) ||
         (words[0] == LIST_REQUESTS && words.size() != 3) ||
         (words[0] == ACCEPT_REQUEST && words.size() != 4) ||
-        (words[0] == UPLOAD_FILE && words.size() != 4) ||
+        (words[0] == UPLOAD_FILE && words.size() != 7) ||
         (words[0] == LIST_FILES && words.size() != 2)
         ) {
         reply = KYEL "Invalid Arguments" RESET;
@@ -206,10 +207,13 @@ void Tracker::processCommand(string command, int desc) {
         accept_request(words[1], words[2], words[3], desc);
     }
     else if (words[0] == UPLOAD_FILE) {
-        upload_file(words[1], words[2], words[3], desc);
+        upload_file(words[1], words[2], words[3], words[4], words[5], words[6], desc);
     }
     else if (words[0] == LIST_FILES) {
         list_files(words[1], desc);
+    }
+    else if (words[0] == DOWNLOAD_FILE) {
+        download_file(words[1], words[2], words[3], words[4], desc);
     }
     else if (words[0] == "send_message") {
         string user = words[1];
@@ -415,7 +419,7 @@ void Tracker::accept_request(string group_name, string user, string myusername, 
     send(desc, &reply[0], reply.length(), 0);
 }
 
-void Tracker::upload_file(string file_path, string group_name, string username, int desc) {
+void Tracker::upload_file(string file_path, string group_name, string username, string file_hash, string no_of_chunks, string last_chunk_size, int desc) {
     string reply;
     if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
         reply = KYEL "Login to upload the file" RESET;
@@ -432,29 +436,20 @@ void Tracker::upload_file(string file_path, string group_name, string username, 
     else if (!validFilePath(file_path)) {
         reply = KRED "Enter valid file path" RESET;
     }
-    else if (allGroups[group_name].files.find(file_path) != allGroups[group_name].files.end()) {
-        reply = KYEL "File already exists in the group" RESET;
+    else if (allGroups[group_name].files.find(file_hash) != allGroups[group_name].files.end()) {
+        reply = KYEL "File already exists in the group. No need to upload again" RESET;
     }
     else {
-        // long long file_size = getFileSize(file_path);
-        // long long no_of_chunks = file_size / CHUNK_SIZE;
-        // long long last_chunk_size = CHUNK_SIZE;
-        // // Find the last chunk size
-        // if (file_size % CHUNK_SIZE != 0) {
-        //     no_of_chunks++;
-        //     last_chunk_size = file_size % CHUNK_SIZE;
-        // }
-
-        // Storing file_path in group
+        // Storing <file_hash, file_path> in the group
         string file_name = getFileName(file_path);
-        allGroups[group_name].files[file_path] = file_name;
-
-        // Storing file_name and users in the all Files
+        allGroups[group_name].files[file_hash] = file_name;
+        // Storing <file_hash, fileInfo> in allFiles
         fileInfo newFile;
-        newFile.fileName = file_name;
+        newFile.location = file_path;
+        newFile.noOfChunks = stoi(no_of_chunks);
+        newFile.lastChunkSize = stoll(last_chunk_size);
         newFile.users.push_back(username);
-        allFiles[file_path] = newFile;
-
+        allFiles[file_hash] = newFile;
         reply = KGRN "Uploaded the file in the group successfully" RESET;
     }
     send(desc, &reply[0], reply.length(), 0);
@@ -473,15 +468,34 @@ void Tracker::list_files(string group_name, int desc) {
         bool flag = true;
         for (auto it : files) {
             if (flag) {
-                reply += KYEL + it.second + RESET;
+                reply += KGRN + it.second + RESET;
                 flag = false;
             }
             else {
-                reply += "\n" KYEL + it.second + RESET;
+                reply += "\n" KGRN + it.second + RESET;
             }
         }
     }
     send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::download_file(string group_name, string file_name, string destination, string username, int desc) {
+    string reply;
+    if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Login to download the file" RESET;
+    }
+    else if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allGroups[group_name].admin != username && allGroups[group_name].members.find(username) == allGroups[group_name].members.end()) {
+        reply = KYEL "Join the group to download the files" RESET;
+    }
+    else if (allGroups[group_name].admin != username && allGroups[group_name].members[username] == 0) {
+        reply = KYEL "Your group join request was not accepted by admin. Wait for admin's approval to download the files" RESET;
+    }
+    else if (!validFilePath(file_name)) {
+        reply = KRED "Enter valid file path" RESET;
+    }
 }
 
 int main(int argc, char* argv[]) {

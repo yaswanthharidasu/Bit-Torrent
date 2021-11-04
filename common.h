@@ -21,6 +21,7 @@
 #include"utils.h"
 #include"color.h"
 #include"log.h"
+#include"sha1.hpp"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ using namespace std;
 #define ACCEPT_REQUEST "accept_request"
 #define UPLOAD_FILE "upload_file"
 #define LIST_FILES "list_files"
+#define DOWNLOAD_FILE "download_file"
 
 #define USER_REGISTER_SUCCESS KGRN "Registration completed successfully" RESET
 #define GROUP_REGISTER_SUCCESS KGRN "Created group successfully" RESET

@@ -14,7 +14,9 @@ struct peerInfo {
 };
 
 struct fileInfo {
-    string fileName;
+    int noOfChunks;
+    long long lastChunkSize;
+    string location;
     vector<string> users;
 };
 

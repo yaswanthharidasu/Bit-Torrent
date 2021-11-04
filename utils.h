@@ -72,11 +72,18 @@ string getFileName(string path) {
     return name;
 }
 
-// Returns file size
-long long getFileSize(string file_path) {
+// Calculates the no_of_chunks and last_chunk_size and assigns them to paramters (pass by reference)
+void chunkDetails(string &file_path, int& no_of_chunks, long long& last_chunk_size) {
     struct stat results;
     stat(&file_path[0], &results);
-    return results.st_size;
+    long long file_size = results.st_size;
+    no_of_chunks = file_size / CHUNK_SIZE;
+    last_chunk_size = CHUNK_SIZE;
+    // Find the last chunk size
+    if (file_size % CHUNK_SIZE != 0) {
+        no_of_chunks++;
+        last_chunk_size = file_size % CHUNK_SIZE;
+    }
 }
 
 // Returns SHA-1 hash of the file
