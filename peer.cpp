@@ -1,4 +1,6 @@
 #include"common.h"
+#include<openssl/sha.h>
+
 class Peer {
     Log log;
 
@@ -72,7 +74,6 @@ void Peer::displayInfo() {
     printf("%s------------------------------------------------------------%s\n", KYEL, RESET);
     printf("\t%sPEER%s ---------> %sIP:%s %s %sPORT:%s %d\n", KRED, RESET, KYEL, RESET, &peerIP[0], KYEL, RESET, peerPort);
     printf("%s------------------------------------------------------------%s\n", KYEL, RESET);
-
 }
 
 void Peer::connectToTracker() {
@@ -150,7 +151,8 @@ void Peer::processInput(vector<string>& words, string& input) {
         words[0] == JOIN_GROUP ||
         words[0] == LEAVE_GROUP ||
         words[0] == LIST_REQUESTS ||
-        words[0] == ACCEPT_REQUEST
+        words[0] == ACCEPT_REQUEST || 
+        words[0] == UPLOAD_FILE
         ) {
         input += " " + username;
     }
@@ -161,6 +163,10 @@ void Peer::processReply(vector<string>& words, string& reply) {
         (words[0] == LOGIN && reply == LOGIN_SUCCESS)) {
         username = words[1];
         password = words[2];
+    }
+    else if(words[0] == LOGOUT && reply == LOGOUT_SUCCESS){
+        username = "###";
+        password = "###";
     }
     else if ((words[0] == "send_message")) {
         // Create Socket

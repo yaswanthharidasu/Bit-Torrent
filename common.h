@@ -16,11 +16,14 @@
 #include<sys/socket.h>
 #include<arpa/inet.h>  // struct sockaddr_in
 
+#include<sys/stat.h>
+
 #include"utils.h"
 #include"color.h"
 #include"log.h"
 
 using namespace std;
+
 
 // Macros for the commands
 #define CREATE_USER "create_user"
@@ -33,10 +36,13 @@ using namespace std;
 #define JOIN_GROUP "join_group"
 #define LEAVE_GROUP "leave_group"
 #define ACCEPT_REQUEST "accept_request"
+#define UPLOAD_FILE "upload_file"
+#define LIST_FILES "list_files"
 
 #define USER_REGISTER_SUCCESS KGRN "Registration completed successfully" RESET
 #define GROUP_REGISTER_SUCCESS KGRN "Created group successfully" RESET
 #define GROUP_JOIN_SUCCESS KGRN "Sent the join request, wait for the admin's approval" RESET
 #define LOGIN_SUCCESS KGRN "Logged in successfully" RESET
+#define LOGOUT_SUCCESS KGRN "Logged out successfully" RESET
 
 #endif

@@ -35,6 +35,8 @@ public:
     void join_group(string group_name, string username, int desc);
     void leave_group(string group_name, string username, int desc);
     void accept_request(string group_name, string user, string myusername, int desc);
+    void upload_file(string file_path, string group_name, string username, int desc);
+    void list_files(string group_name, int desc);
 
     static void* serverHandler(void* ptr) {
         int desc = ((struct threadArgs*)ptr)->desc;
@@ -166,7 +168,9 @@ void Tracker::processCommand(string command, int desc) {
         (words[0] == JOIN_GROUP && words.size() != 3) ||
         (words[0] == LEAVE_GROUP && words.size() != 3) ||
         (words[0] == LIST_REQUESTS && words.size() != 3) ||
-        (words[0] == ACCEPT_REQUEST && words.size() != 4)
+        (words[0] == ACCEPT_REQUEST && words.size() != 4) ||
+        (words[0] == UPLOAD_FILE && words.size() != 4) ||
+        (words[0] == LIST_FILES && words.size() != 2)
         ) {
         reply = KYEL "Invalid Arguments" RESET;
         send(desc, &reply[0], reply.length(), 0);
@@ -200,6 +204,12 @@ void Tracker::processCommand(string command, int desc) {
     }
     else if (words[0] == ACCEPT_REQUEST) {
         accept_request(words[1], words[2], words[3], desc);
+    }
+    else if (words[0] == UPLOAD_FILE) {
+        upload_file(words[1], words[2], words[3], desc);
+    }
+    else if (words[0] == LIST_FILES) {
+        list_files(words[1], desc);
     }
     else if (words[0] == "send_message") {
         string user = words[1];
@@ -255,7 +265,7 @@ void Tracker::logout(string username, int desc) {
     }
     else if (allPeers[username].loggedIn) {
         allPeers[username].loggedIn = false;
-        reply = LOGIN_SUCCESS;
+        reply = LOGOUT_SUCCESS;
         log.printLog("User '" + username + "'logged out\n");
     }
     send(desc, &reply[0], reply.length(), 0);
@@ -264,7 +274,7 @@ void Tracker::logout(string username, int desc) {
 void Tracker::create_group(string group_name, string username, int desc) {
     string reply;
     if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
-        reply = KYEL "Login first to create a group" RESET;
+        reply = KYEL "Login to create a group" RESET;
     }
     else if (allGroups.find(group_name) != allGroups.end()) {
         reply = KRED "Group name already exists" RESET;
@@ -299,10 +309,15 @@ void Tracker::list_groups(int desc) {
         reply = KYEL "No Groups" RESET;
     }
     else {
-        reply = KYEL "Active Groups in Network\n" RESET;
-        reply += KYEL "------------------------" RESET;
+        bool flag = true;
         for (auto it : allGroups) {
-            reply += "\n" + it.first;
+            if (flag) {
+                reply += KYEL + it.first + RESET;
+                flag = false;
+            }
+            else {
+                reply += "\n" KYEL + it.first + RESET;
+            }
         }
     }
     send(desc, &reply[0], reply.length(), 0);
@@ -323,11 +338,16 @@ void Tracker::list_requests(string group_name, string username, int desc) {
         reply = KYEL "No pending requests" RESET;
     }
     else {
-        reply = KYEL "Pending requests\n" RESET;
-        reply += KYEL "----------------" RESET;
+        bool flag = true;
         for (auto it : allGroups[group_name].members) {
             if (it.second == 0) {
-                reply += "\n" + it.first;
+                if (flag) {
+                    reply += KYEL + it.first + RESET;
+                    flag = false;
+                }
+                else {
+                    reply += "\n" KYEL + it.first + RESET;
+                }
             }
         }
     }
@@ -337,7 +357,7 @@ void Tracker::list_requests(string group_name, string username, int desc) {
 void Tracker::join_group(string group_name, string username, int desc) {
     string reply;
     if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
-        reply = KYEL "Login first to join a group" RESET;
+        reply = KYEL "Login to join a group" RESET;
     }
     else if (allGroups.find(group_name) == allGroups.end()) {
         reply = KRED "Group doesn't exists" RESET;
@@ -359,7 +379,7 @@ void Tracker::join_group(string group_name, string username, int desc) {
 void Tracker::leave_group(string group_name, string username, int desc) {
     string reply;
     if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
-        reply = KYEL "Login first to leave a group" RESET;
+        reply = KYEL "Login to leave a group" RESET;
     }
     else if (allGroups.find(group_name) == allGroups.end()) {
         reply = KRED "Group doesn't exists" RESET;
@@ -391,6 +411,75 @@ void Tracker::accept_request(string group_name, string user, string myusername, 
         allGroups[group_name].members[user] = 1;
         allGroups[group_name].acceptedMembers.push_back(user);
         reply = KGRN "User's request accepted successfully" RESET;
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::upload_file(string file_path, string group_name, string username, int desc) {
+    string reply;
+    if (allPeers.find(username) == allPeers.end() || allPeers[username].loggedIn == false) {
+        reply = KYEL "Login to upload the file" RESET;
+    }
+    else if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allGroups[group_name].admin != username && allGroups[group_name].members.find(username) == allGroups[group_name].members.end()) {
+        reply = KYEL "Join the group to upload the files" RESET;
+    }
+    else if (allGroups[group_name].admin != username && allGroups[group_name].members[username] == 0) {
+        reply = KYEL "Your group join request was not accepted by admin. Wait for admin's approval to upload the files" RESET;
+    }
+    else if (!validFilePath(file_path)) {
+        reply = KRED "Enter valid file path" RESET;
+    }
+    else if (allGroups[group_name].files.find(file_path) != allGroups[group_name].files.end()) {
+        reply = KYEL "File already exists in the group" RESET;
+    }
+    else {
+        // long long file_size = getFileSize(file_path);
+        // long long no_of_chunks = file_size / CHUNK_SIZE;
+        // long long last_chunk_size = CHUNK_SIZE;
+        // // Find the last chunk size
+        // if (file_size % CHUNK_SIZE != 0) {
+        //     no_of_chunks++;
+        //     last_chunk_size = file_size % CHUNK_SIZE;
+        // }
+
+        // Storing file_path in group
+        string file_name = getFileName(file_path);
+        allGroups[group_name].files[file_path] = file_name;
+
+        // Storing file_name and users in the all Files
+        fileInfo newFile;
+        newFile.fileName = file_name;
+        newFile.users.push_back(username);
+        allFiles[file_path] = newFile;
+
+        reply = KGRN "Uploaded the file in the group successfully" RESET;
+    }
+    send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::list_files(string group_name, int desc) {
+    string reply;
+    if (allGroups.find(group_name) == allGroups.end()) {
+        reply = KRED "Group doesn't exists" RESET;
+    }
+    else if (allGroups[group_name].files.size() == 0) {
+        reply = KYEL "No files in the group" RESET;
+    }
+    else {
+        unordered_map<string, string> files = allGroups[group_name].files;
+        bool flag = true;
+        for (auto it : files) {
+            if (flag) {
+                reply += KYEL + it.second + RESET;
+                flag = false;
+            }
+            else {
+                reply += "\n" KYEL + it.second + RESET;
+            }
+        }
     }
     send(desc, &reply[0], reply.length(), 0);
 }
