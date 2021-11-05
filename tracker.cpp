@@ -171,7 +171,8 @@ void Tracker::processCommand(string command, int desc) {
         (words[0] == LIST_REQUESTS && words.size() != 3) ||
         (words[0] == ACCEPT_REQUEST && words.size() != 4) ||
         (words[0] == UPLOAD_FILE && words.size() != 7) ||
-        (words[0] == LIST_FILES && words.size() != 2)
+        (words[0] == LIST_FILES && words.size() != 2) ||
+        (words[0] == DOWNLOAD_FILE && words.size() != 5)
         ) {
         reply = KYEL "Invalid Arguments" RESET;
         send(desc, &reply[0], reply.length(), 0);
@@ -496,6 +497,25 @@ void Tracker::download_file(string group_name, string file_name, string destinat
     else if (!validFilePath(file_name)) {
         reply = KRED "Enter valid file path" RESET;
     }
+    else if (!validDirectory(destination)) {
+        reply = KRED "Destination path is not a valid directory" RESET;
+    }
+    else {
+        string file_hash = SHA1::from_file(file_name);
+        if (allGroups[group_name].files.find(file_hash) == allGroups[group_name].files.end()) {
+            reply = KYEL "File doesn't exists in the group" RESET;
+        }
+        else {
+            // Send all the peers which has that file.
+            fileInfo reqFile = allFiles[file_hash];
+            reply += "$" + file_hash + " " + to_string(allFiles[file_hash].noOfChunks);
+            for (int i = 0; i < reqFile.users.size(); i++) {
+                string user = reqFile.users[i];
+                reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+            }
+        }
+    }
+    send(desc, &reply[0], reply.length(), 0);
 }
 
 int main(int argc, char* argv[]) {

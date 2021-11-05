@@ -15,6 +15,7 @@
 
 #include<sys/socket.h>
 #include<arpa/inet.h>  // struct sockaddr_in
+#include<unistd.h>
 
 #include<sys/stat.h>
 

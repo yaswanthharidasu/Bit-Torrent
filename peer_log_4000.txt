@@ -2,3 +2,7 @@ Socket Created
 Socket options set
 Binded the socket
 Listening...
+Incoming connection from IP: 127.0.0.1 PORT: 4001
+Peer As Server
+get_chunk_info bed3ef5dc8287f807e4519c4dc47efabae3be1ca
+10 1 1 1 1 1 1 1 1 1 1

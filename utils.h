@@ -6,6 +6,7 @@
 #include<sstream>
 #include<fstream>
 #include<sys/stat.h>
+#include<dirent.h>
 #include<openssl/sha.h>
 
 #define CHUNK_SIZE 524288 // (512*1024) 
@@ -37,7 +38,7 @@ vector<string> readFile(char* arg) {
 }
 
 // Tokenize the given string into words
-vector<string> splitString(string str) {
+vector<string> splitString(string& str) {
     istringstream iss(str);
     vector<string> result;
     string word;
@@ -59,6 +60,25 @@ bool validFilePath(string path) {
     return true;
 }
 
+bool validDirectory(string path) {
+    DIR* dir = opendir(&path[0]);
+    /* Directory exists. */
+    if (dir) {
+        closedir(dir);
+        return true;
+    }
+    /* Directory does not exist. */
+    else if (ENOENT == errno) {
+        // printMessage("ERROR: Directory doesnot exist");
+        return false;
+    }
+    /* opendir() failed for some other reason. */
+    else {
+        // printMessage("ERROR: Not a Directory");
+        return false;
+    }
+}
+
 string getFileName(string path) {
     string name;
     int i;
@@ -73,7 +93,7 @@ string getFileName(string path) {
 }
 
 // Calculates the no_of_chunks and last_chunk_size and assigns them to paramters (pass by reference)
-void chunkDetails(string &file_path, int& no_of_chunks, long long& last_chunk_size) {
+void chunkDetails(string& file_path, int& no_of_chunks, long long& last_chunk_size) {
     struct stat results;
     stat(&file_path[0], &results);
     long long file_size = results.st_size;
@@ -133,6 +153,10 @@ void receive_file(string destination, int desc) {
     }
     fclose(dest);
     return;
+}
+
+bool compareSizes(vector<string> a, vector<string> b) {
+    return a.size() < b.size();
 }
 
 #endif
