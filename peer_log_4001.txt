@@ -3,132 +3,861 @@ Socket options set
 Binded the socket
 Listening...
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57218
+Incoming connection from IP: 127.0.0.1 PORT: 33814
 ========================================================
-get_chunk_info Gusagusale.mp3
+get_chunk_info cmgr.mp4
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57220
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 0 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57222
-========================================================
-
-Chunk 0 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 8 350000
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57224
-========================================================
-Chunk 8 of size: 350000========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57226
+Incoming connection from IP: 127.0.0.1 PORT: 33816
 ========================================================
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57228
+Incoming connection from IP: 127.0.0.1 PORT: 33818
 ========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 10 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 11 524288
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57230
+Incoming connection from IP: 127.0.0.1 PORT: 33820
+========================================================
+Chunk 10 of size: 524288Chunk 11 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33822
 ========================================================
 
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 4 524288
-Chunk 4 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57232
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 42 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33824
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33826
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33828
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33832
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33830
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 9 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33834
+========================================================
+Chunk 9 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33838
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33836
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33840
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33842
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33844
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33846
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 6 524288
+
+Chunk 6 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 18 524288
+Chunk 18 of size: 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33848
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 38 524288
+Chunk 38 of size: 524288Chunk 42 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 21 524288
+Chunk 21 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 17 524288
+Chunk 17 of size: 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 8 524288
+
+Chunk 8 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 15 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 27 524288
+Chunk 15 of size: 524288Chunk 27 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 25 524288
+
+Chunk 25 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 51 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 28 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 14 524288
+
+
+Chunk 14 of size: 524288
+
+Chunk 51 of size: 524288
+
+Chunk 28 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33850
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 29 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33852
+========================================================
+Chunk 29 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33854
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 43 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 32 524288
+Chunk 43 of size: 524288Chunk 32 of size: 524288
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 12 524288
+Chunk 12 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33858
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33856
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33862
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33864
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33866
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33868
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 73 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33870
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33872
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33874
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33876
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 68 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 30 524288========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 72 524288Incoming connection from IP: 127.0.0.1 PORT: 33878
+
 ========================================================
 
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 7 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57234
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 2 524288
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 1 524288
-Chunk 7 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57236
-========================================================
-Chunk 2 of size: 524288Chunk 1 of size: 524288
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 3 524288
-Chunk 3 of size: 524288
+Chunk 73 of size: 524288
+Chunk 30 of size: 524288
 
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 6 524288
-
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 5 524288
-
-Chunk 5 of size: 524288Chunk 6 of size: 524288
-
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 70 524288
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57270
-========================================================
-get_chunk_info Gusagusale.mp3
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57272
+Incoming connection from IP: 127.0.0.1 PORT: 33882
 ========================================================
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57276
+Incoming connection from IP: 127.0.0.1 PORT: 33880
 ========================================================
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57278
+Incoming connection from IP: 127.0.0.1 PORT: 33884
 ========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/Gusagusale.mp3 5 524288
-Chunk 5 of size: 524288
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/Gusagusale.mp3 6 524288download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/Gusagusale.mp3 1 524288
-Chunk 1 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57280
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33886
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33888
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33890
 ========================================================
 
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/Gusagusale.mp3 3 524288
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57282
+Incoming connection from IP: 127.0.0.1 PORT: 33892
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33894
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33896
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33898
+========================================================
+Chunk 72 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33900
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33902
+========================================================
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 47 524288
+Incoming connection from IP: 127.0.0.1 PORT: 33904
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33906
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33908
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33910
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33912
+========================================================
+Chunk 47 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33914
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33916
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33918
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33920
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33922
+========================================================
+Chunk 70 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33924
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33926
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33928
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33930
+========================================================
+Chunk 68 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33932
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33934
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33936
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 13 524288========================================================
+
+Incoming connection from IP: 127.0.0.1 PORT: 33938
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33940
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33942
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33944
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33946
+========================================================
+Chunk 13 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 35 524288
+Chunk 35 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 2 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33948
+========================================================
+========================================================
+Chunk 2 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 33952
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33950
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33954
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33956
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 36 524288========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33958
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33960
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33962
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33964
+========================================================
+Chunk 36 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33966
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33968
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 74 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 59 524288Chunk 74 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 22 524288
+Chunk 59 of size: 524288Chunk 22 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 5 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 26 524288
+Chunk 5 of size: 524288Chunk 26 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 39 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 78 524288
+Chunk 39 of size: 524288Chunk 78 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 65 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 63 524288
+Chunk 63 of size: 524288Chunk 65 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 19 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 58 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 75 524288
+
+Chunk 75 of size: 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33970
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 34 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 80 524288
+Chunk 34 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 41 524288========================================================
+
+Incoming connection from IP: 127.0.0.1 PORT: 33972
+========================================================
+Chunk 41 of size: 524288Chunk 80 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 56 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 44 524288
+Chunk 56 of size: 524288Chunk 44 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 57 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33974
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 16 524288
+
+Chunk 16 of size: 524288Chunk 57 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 69 524288
+Chunk 69 of size: 524288Chunk 58 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 62 524288
+Chunk 62 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 1 524288
+Chunk 1 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 76 524288
+Chunk 76 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 45 524288
+Chunk 45 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 64 524288
+Chunk 64 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 31 524288
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 40 524288Incoming connection from IP: 127.0.0.1 PORT: 33976
+
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 7 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 52 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 60 524288
+Chunk 52 of size: 524288Chunk 60 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 71 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 77 524288
+
+Chunk 71 of size: 524288Chunk 77 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 3 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33978
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 20 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 55 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 49 524288
+Chunk 20 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 37 524288Chunk 49 of size: 524288
+Chunk 55 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33980
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 61 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 53 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 54 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 81 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 23 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 24 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 66 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33982
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 0 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 46 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 67 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 48 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 4 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 50 524288
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33984
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33986
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 79 524288
+Chunk 79 of size: 524288
+
+Chunk 61 of size: 524288
+
+Chunk 19 of size: 524288
+
+Chunk 40 of size: 524288
+
+Chunk 24 of size: 524288
+
+Chunk 37 of size: 524288
+
+
+Chunk 54 of size: 524288
+
+Chunk 81 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 91 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 82 524288
+Chunk 82 of size: 524288Chunk 46 of size: 524288
+Chunk 67 of size: 524288
+Chunk 91 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 90 524288
+
+
+Chunk 53 of size: 524288
+Chunk 48 of size: 524288Chunk 90 of size: 524288Chunk 7 of size: 524288
+Chunk 31 of size: 524288Chunk 3 of size: 524288
+
+Chunk 23 of size: 524288
+Chunk 4 of size: 524288Chunk 50 of size: 524288Chunk 66 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 33 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33988
 ========================================================
 
-Chunk 3 of size: 524288Chunk 6 of size: 524288
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/Gusagusale.mp3 2 524288
-Chunk 2 of size: 524288
 
+
+
+Chunk 33 of size: 524288
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57288
+Incoming connection from IP: 127.0.0.1 PORT: 33990
 ========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/Gusagusale.mp3 0 524288
+
+
+
+
 Chunk 0 of size: 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57344
-========================================================
-get_chunk_info Gusagusale.mp3
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57346
-========================================================
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57350
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Movies/Gusagusale.mp3 8 350000
-download_chunk Gusagusale.mp3 /home/yaswanth/Movies/Gusagusale.mp3 1 524288
-Chunk 8 of size: 350000Chunk 1 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57354
-========================================================
-
-download_chunk Gusagusale.mp3 /home/yaswanth/Movies/Gusagusale.mp3 6 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57356
-========================================================
-
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57360
-========================================================
-Chunk 6 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Movies/Gusagusale.mp3 0 524288
-Chunk 0 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Movies/Gusagusale.mp3 4 524288
-Chunk 4 of size: 524288
 
 
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 133 524288
+
+Chunk 133 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 93 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 33992
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57414
 ========================================================
-get_chunk_info Gusagusale.mp3
+Incoming connection from IP: 127.0.0.1 PORT: 33994
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57422
 ========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/fb/Gusagusale.mp3 5 524288
-Chunk 5 of size: 524288
+Incoming connection from IP: 127.0.0.1 PORT: 33996
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 57434
 ========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/fb/Gusagusale.mp3 3 524288
-Chunk 3 of size: 524288
+Incoming connection from IP: 127.0.0.1 PORT: 33998
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58200
 ========================================================
-get_chunk_info Gusagusale.mp3
+Incoming connection from IP: 127.0.0.1 PORT: 34000
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34002
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34004
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34006
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34008
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34010
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34012
+========================================================
+========================================================
+
+Incoming connection from IP: 127.0.0.1 PORT: 34014
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34016
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34018
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34020
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34022
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34024
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34026
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34028
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34030
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34032
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34034
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34036
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34038
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34040
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34042
+========================================================
+
+
+
+
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 123 524288
+Chunk 123 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34044
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34046
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34048
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34050
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34052
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34054
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34056
+========================================================
+========================================================
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 86 524288
+
+Chunk 86 of size: 524288
+
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 89 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 112 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 128 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 84 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 97 524288
+
+
+
+Chunk 89 of size: 524288
+Chunk 93 of size: 524288Chunk 97 of size: 524288
+Incoming connection from IP: 127.0.0.1 PORT: 34058
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34060
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34062
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 83 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34064
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34066
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34068
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34070
+Chunk 83 of size: 524288========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34072
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34074
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34076
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34078
+========================================================
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 110 524288
+
+Chunk 110 of size: 524288
+Chunk 128 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 136 524288
+
+Chunk 136 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34080
+Chunk 112 of size: 524288========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34082
+========================================================
+Chunk 84 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34084
+========================================================
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 120 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 103 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 132 524288
+Chunk 103 of size: 524288Chunk 132 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34086
+========================================================
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 85 524288
+Chunk 85 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 105 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 109 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 126 524288
+Chunk 109 of size: 524288Chunk 126 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34088
+========================================================
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 102 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 137 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 118 524288
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 92 524288
+Chunk 105 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 96 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 108 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 104 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 107 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 111 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 129 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 122 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 87 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 100 524288
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 125 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 98 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 94 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 117 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 119 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 116 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 121 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 131 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 113 524288
+
+Chunk 120 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 88 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34090
+========================================================
+========================================================
+Chunk 100 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34092
+Chunk 96 of size: 524288========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 101 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 130 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 114 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 95 524288
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34094
+========================================================
+
+
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 106 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 115 524288Chunk 117 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 127 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 99 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 124 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 138 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 135 524288
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34096
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 134 524288
+Chunk 119 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34098
+========================================================
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 145 524288Chunk 98 of size: 524288Chunk 102 of size: 524288Chunk 113 of size: 524288
+Chunk 129 of size: 524288Chunk 87 of size: 524288Chunk 125 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34100
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34102
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34104
+========================================================
+
+Chunk 88 of size: 524288Chunk 131 of size: 524288========================================================
+
+Incoming connection from IP: 127.0.0.1 PORT: 34106
+========================================================
+
+Chunk 137 of size: 524288Chunk 121 of size: 524288Chunk 122 of size: 524288
+
+
+
+Chunk 99 of size: 524288Chunk 94 of size: 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 144 524288Chunk 104 of size: 524288Chunk 116 of size: 524288
+
+Chunk 111 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 150 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 151 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 149 524288
+
+
+Chunk 135 of size: 524288Chunk 118 of size: 524288Chunk 115 of size: 524288Chunk 138 of size: 524288Chunk 108 of size: 524288Chunk 127 of size: 524288Chunk 107 of size: 524288Chunk 124 of size: 524288
+
+
+
+Chunk 92 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34108
+========================================================
+Chunk 144 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 168 524288
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34110
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 141 524288
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34112
+========================================================
+
+
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34114
+========================================================
+Chunk 168 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34116
+========================================================
+Chunk 130 of size: 524288========================================================
+
+Incoming connection from IP: 127.0.0.1 PORT: 34120
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34118
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 143 524288
+Chunk 114 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34122
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 165 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 169 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34124
+========================================================
+Chunk 101 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 154 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 159 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34128
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 157 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 160 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 163 524288
+========================================================
+Chunk 95 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34130
+========================================================
+
+Chunk 154 of size: 524288Chunk 160 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34132
+========================================================
+
+
+========================================================
+Chunk 150 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34134
+========================================================
+Chunk 106 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 153 524288
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 158 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34136
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 164 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 147 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34138
+========================================================
+Chunk 159 of size: 524288
+========================================================
+Chunk 164 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34140
+========================================================
+
+Chunk 157 of size: 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34142
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 166 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 162 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 139 524288
+========================================================
+Chunk 134 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34144
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34146
+========================================================
+Chunk 165 of size: 524288
+Chunk 166 of size: 524288Chunk 149 of size: 524288
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34148
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 155 524288
+Chunk 153 of size: 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34150
+========================================================
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 156 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 146 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 140 524288
+========================================================
+Chunk 147 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34154
+========================================================
+
+========================================================
+Chunk 145 of size: 524288Chunk 155 of size: 524288Incoming connection from IP: 127.0.0.1 PORT: 34152
+========================================================
+Chunk 156 of size: 524288
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34156
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34158
+========================================================
+Chunk 139 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 34160
+Chunk 162 of size: 524288========================================================
+
+
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 142 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 152 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 161 524288
+Chunk 163 of size: 524288Chunk 146 of size: 524288
+
+Chunk 142 of size: 524288Chunk 141 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 170 180636Chunk 143 of size: 524288
+Chunk 151 of size: 524288Chunk 170 of size: 180636Chunk 152 of size: 524288download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 148 524288
+Chunk 158 of size: 524288Chunk 148 of size: 524288Chunk 161 of size: 524288Chunk 169 of size: 524288
+download_chunk cmgr.mp4 /home/yaswanth/cmgr.mp4 167 524288
+
+Chunk 167 of size: 524288
+Chunk 140 of size: 524288
+
+
+
+
+
+
+
+

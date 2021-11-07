@@ -2,36 +2,3 @@ Socket Created
 Socket options set
 Binded the socket
 Listening...
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 39908
-========================================================
-get_chunk_info Gusagusale.mp3
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 39910
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/fb/Gusagusale.mp3 6 524288
-Chunk 6 of size: 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 39914
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/fb/Gusagusale.mp3 1 524288
-Chunk 1 of size: 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 39926
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Downloads/fb/Gusagusale.mp3 2 524288
-Chunk 2 of size: 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 40696
-========================================================
-get_chunk_info Gusagusale.mp3
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 40700
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/M.Tech/Gusagusale.mp3 1 524288
-Chunk 1 of size: 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 40708
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/M.Tech/Gusagusale.mp3 3 524288
-Chunk 3 of size: 524288

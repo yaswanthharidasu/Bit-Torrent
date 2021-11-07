@@ -224,7 +224,6 @@ void Peer::processReply(vector<string>& words, string& reply) {
         // Creating file first
         FILE* fp = fopen(&destination[0], "a");
         fclose(fp);
-
         download(noOfChunks, lastChunkSize, file_name, users, destination);
     }
     else if ((words[0] == "send_message")) {
@@ -356,9 +355,9 @@ void Peer::getFileInfo(vector<vector<string>>& fileData, string file_name, strin
     if (reply != OFFLINE) {
         // Reply: <no_of_chunks> <chunk_1_yes/no> <chunk_2> ...
         // Ex: 5 1 1 1 0 1  
-        int noOfChunks = reply[0] - '0';
-        reply = reply.substr(2);
         vector<string> values = splitString(reply);
+        int noOfChunks = stoi(values[0]);
+        values.erase(values.begin());
         for (int i = 0; i < values.size(); i++) {
             if (values[i][0] - '0' == 1)
                 fileData[i].push_back(ip + ":" + to_string(port));
@@ -371,9 +370,7 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
     bool downloaded = false;
     // string file_name = getFileName(destination);
     while (!downloaded) {
-
         int i = rand() % chunkData.size();
-
         string message;
         // Command: download_chunk <file_hash> <destination> <chunk_no> <chunk_size>
         message += DOWNLOAD_CHUNK " " + file_name + " " + destination + " " + to_string(chunk_no) + " " + to_string(chunk_size);
