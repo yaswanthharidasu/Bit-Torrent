@@ -7,11 +7,14 @@
 
 #include<vector>
 #include<unordered_map>
+#include<unordered_set>
 #include<algorithm>
 #include<string>
 #include<thread>
 #include<string.h>
+#include<functional>
 #include<pthread.h>
+#include<cerrno>
 
 #include<sys/socket.h>
 #include<arpa/inet.h>  // struct sockaddr_in
@@ -42,6 +45,11 @@ using namespace std;
 #define LIST_FILES "list_files"
 #define DOWNLOAD_FILE "download_file"
 
+// Extra macros
+#define DOWNLOAD_CHUNK "download_chunk"
+#define OFFLINE "offline"
+#define DOWNLOAD_CHUNK_SUCCESS KGRN "Downloaded chunk successfully" RESET
+#define DOWNLOAD_CHUNK_FAILED KRED "Failed to download the chunk" RESET
 #define USER_REGISTER_SUCCESS KGRN "Registration completed successfully" RESET
 #define GROUP_REGISTER_SUCCESS KGRN "Created group successfully" RESET
 #define GROUP_JOIN_SUCCESS KGRN "Sent the join request, wait for the admin's approval" RESET

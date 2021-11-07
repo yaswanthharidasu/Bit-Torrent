@@ -14,6 +14,7 @@ struct peerInfo {
 };
 
 struct fileInfo {
+    string hash;
     int noOfChunks;
     long long lastChunkSize;
     string location;
@@ -25,7 +26,9 @@ struct groupInfo {
     vector<string> acceptedMembers;
     unordered_map<string, int> members;
     ///////////// FILE_PATH, FILE_NAME /////////
-    unordered_map<string, string> files;
+    // unordered_map<string, string> files;
+    ///////////// FILE_PATH ////
+    unordered_set<string> files;
     // unordered_map<string, int> fileChunks;
     ///////////// FILE_NAME /////////// USER ////// CHUNKS ///////
     // unordered_map<string, unordered_map<string, vector<int>>>files;
@@ -34,8 +37,7 @@ struct groupInfo {
 vector<thread> peerThreads;
 unordered_map<string, peerInfo> allPeers;
 unordered_map<string, groupInfo> allGroups;
-// file_path is used as key because file_name can be same in two different folders.
-// Thus, file_name is not unique and cannot be used as key
+///////////// FILE_NAME, INFO ///////////
 unordered_map<string, fileInfo> allFiles;
 
 #endif

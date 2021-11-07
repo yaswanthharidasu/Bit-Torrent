@@ -441,16 +441,16 @@ void Tracker::upload_file(string file_path, string group_name, string username, 
         reply = KYEL "File already exists in the group. No need to upload again" RESET;
     }
     else {
-        // Storing <file_hash, file_path> in the group
+        // Storing <file_name> in the group
         string file_name = getFileName(file_path);
-        allGroups[group_name].files[file_hash] = file_name;
-        // Storing <file_hash, fileInfo> in allFiles
+        allGroups[group_name].files.insert(file_name);
+        // Storing <file_name, fileInfo> in allFiles
         fileInfo newFile;
         newFile.location = file_path;
         newFile.noOfChunks = stoi(no_of_chunks);
         newFile.lastChunkSize = stoll(last_chunk_size);
         newFile.users.push_back(username);
-        allFiles[file_hash] = newFile;
+        allFiles[file_name] = newFile;
         reply = KGRN "Uploaded the file in the group successfully" RESET;
     }
     send(desc, &reply[0], reply.length(), 0);
@@ -465,15 +465,15 @@ void Tracker::list_files(string group_name, int desc) {
         reply = KYEL "No files in the group" RESET;
     }
     else {
-        unordered_map<string, string> files = allGroups[group_name].files;
+        unordered_set<string> files = allGroups[group_name].files;
         bool flag = true;
         for (auto it : files) {
             if (flag) {
-                reply += KGRN + it.second + RESET;
+                reply += KGRN + it + RESET;
                 flag = false;
             }
             else {
-                reply += "\n" KGRN + it.second + RESET;
+                reply += "\n" KGRN + it + RESET;
             }
         }
     }
@@ -494,25 +494,35 @@ void Tracker::download_file(string group_name, string file_name, string destinat
     else if (allGroups[group_name].admin != username && allGroups[group_name].members[username] == 0) {
         reply = KYEL "Your group join request was not accepted by admin. Wait for admin's approval to download the files" RESET;
     }
-    else if (!validFilePath(file_name)) {
-        reply = KRED "Enter valid file path" RESET;
-    }
+    // else if (!validFilePath(file_name)) {
+    //     reply = KRED "Enter valid file path" RESET;
+    // }
     else if (!validDirectory(destination)) {
         reply = KRED "Destination path is not a valid directory" RESET;
     }
     else {
-        string file_hash = SHA1::from_file(file_name);
-        if (allGroups[group_name].files.find(file_hash) == allGroups[group_name].files.end()) {
+        if (allGroups[group_name].files.find(file_name) == allGroups[group_name].files.end()) {
             reply = KYEL "File doesn't exists in the group" RESET;
         }
         else {
+            fileInfo reqFile = allFiles[file_name];
             // Send all the peers which has that file.
-            fileInfo reqFile = allFiles[file_hash];
-            reply += "$" + file_hash + " " + to_string(allFiles[file_hash].noOfChunks);
+            // reply +=  file_name;
+            reply += "$";
+            bool flag = true;
             for (int i = 0; i < reqFile.users.size(); i++) {
                 string user = reqFile.users[i];
-                reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                if (flag) {
+                    reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                    flag = false;
+                }
+                else {
+                    reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                }
             }
+            reply += " " + to_string(allFiles[file_name].noOfChunks) + " " + to_string(allFiles[file_name].lastChunkSize);
+            log.printLog("Download_file: " + reply);
+            allFiles[file_name].users.push_back(username);
         }
     }
     send(desc, &reply[0], reply.length(), 0);
@@ -526,7 +536,7 @@ int main(int argc, char* argv[]) {
     Tracker t;
     t.parseArgs(argc, argv);
     t.exitThread();
-    t.displayInfo();
+    t.displayInfo();    
     t.connectToPeer();
     return 0;
 }
