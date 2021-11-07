@@ -46,6 +46,7 @@ using namespace std;
 #define DOWNLOAD_FILE "download_file"
 
 // Extra macros
+#define FILE_INFO "file_info"
 #define DOWNLOAD_CHUNK "download_chunk"
 #define OFFLINE "offline"
 #define DOWNLOAD_CHUNK_SUCCESS KGRN "Downloaded chunk successfully" RESET

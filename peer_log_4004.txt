@@ -1,0 +1,23 @@
+Socket Created
+Socket options set
+Binded the socket
+Listening...
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 52918
+========================================================
+get_chunk_info Gusagusale.mp3
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 52926
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 52928
+========================================================
+download_chunk Gusagusale.mp3 /home/yaswanth/M.Tech/Gusagusale.mp3 2 524288
+Chunk 2 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 52936
+========================================================
+download_chunk Gusagusale.mp3 /home/yaswanth/M.Tech/Gusagusale.mp3 7 524288
+Chunk 7 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/M.Tech/Gusagusale.mp3 5 524288
+Chunk 5 of size: 524288
+
+

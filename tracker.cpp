@@ -25,6 +25,8 @@ public:
     void trackerAsServer(int desc);
     void displayInfo();
     void processCommand(string command, int desc);
+
+    // Command methods
     void create_user(string username, string password, int desc);
     void login(string username, string password, string ip, string port, int desc);
     void logout(string username, int desc);
@@ -38,6 +40,9 @@ public:
     void upload_file(string file_path, string group_name, string username, string file_hash, string no_of_chunks, string last_chunk_size, int desc);
     void list_files(string group_name, int desc);
     void download_file(string group_name, string file_name, string destination, string username, int desc);
+
+    // Utitlity methods
+    void file_info(string file_name, string username, int desc);
 
     static void* serverHandler(void* ptr) {
         int desc = ((struct threadArgs*)ptr)->desc;
@@ -215,6 +220,9 @@ void Tracker::processCommand(string command, int desc) {
     }
     else if (words[0] == DOWNLOAD_FILE) {
         download_file(words[1], words[2], words[3], words[4], desc);
+    }
+    else if (words[0] == FILE_INFO) {
+        file_info(words[1], words[2], desc);
     }
     else if (words[0] == "send_message") {
         string user = words[1];
@@ -522,10 +530,32 @@ void Tracker::download_file(string group_name, string file_name, string destinat
             }
             reply += " " + to_string(allFiles[file_name].noOfChunks) + " " + to_string(allFiles[file_name].lastChunkSize);
             log.printLog("Download_file: " + reply);
+            // Storing the user who is downloading the file even though the user hasn't started downloading yet.
             allFiles[file_name].users.push_back(username);
         }
     }
     send(desc, &reply[0], reply.length(), 0);
+}
+
+void Tracker::file_info(string file_name, string username, int desc) {
+    string reply;
+    fileInfo reqFile = allFiles[file_name];
+    reply += "$";
+    bool flag = true;
+    for (int i = 0; i < reqFile.users.size(); i++) {
+        string user = reqFile.users[i];
+        if (user == username)
+            continue;
+        if (flag) {
+            reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
+            flag = false;
+        }
+        else {
+            reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+        }
+    }
+    reply += " " + to_string(allFiles[file_name].noOfChunks) + " " + to_string(allFiles[file_name].lastChunkSize);
+    log.printLog("file_info: " + reply);
 }
 
 int main(int argc, char* argv[]) {
@@ -536,7 +566,7 @@ int main(int argc, char* argv[]) {
     Tracker t;
     t.parseArgs(argc, argv);
     t.exitThread();
-    t.displayInfo();    
+    t.displayInfo();
     t.connectToPeer();
     return 0;
 }
