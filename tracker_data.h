@@ -25,19 +25,21 @@ struct groupInfo {
     string admin;
     vector<string> acceptedMembers;
     unordered_map<string, int> members;
+
+    ///////////// FILE_NAME ////
+    unordered_set<string> files;
+
     ///////////// FILE_PATH, FILE_NAME /////////
     // unordered_map<string, string> files;
-    ///////////// FILE_PATH ////
-    unordered_set<string> files;
-    // unordered_map<string, int> fileChunks;
-    ///////////// FILE_NAME /////////// USER ////// CHUNKS ///////
-    // unordered_map<string, unordered_map<string, vector<int>>>files;
 };
 
-vector<thread> peerThreads;
+// vector<thread> peerThreads;
+
+///////////// PEER_NAME,INFO ///////////
 unordered_map<string, peerInfo> allPeers;
+///////////// GROUP_NAME,INFO //////////
 unordered_map<string, groupInfo> allGroups;
-///////////// FILE_NAME, INFO ///////////
+///////////// FILE_NAME,INFO ///////////
 unordered_map<string, fileInfo> allFiles;
 
 #endif

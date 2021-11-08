@@ -21,11 +21,6 @@ class Peer {
     int peerServer_desc, peerPeer_desc;
     struct sockaddr_in peerServerAddr, peerPeerAddr;
 
-    struct threadArgs {
-        Peer* p;
-        int desc;
-    };
-
     struct fileInfo {
         string hash;
         string location;
@@ -37,32 +32,41 @@ class Peer {
     ///////////// FILE_NAME, INFO ////////
     unordered_map<string, fileInfo> files;
 
+    // Thread heplers
+    struct threadArgs {
+        Peer* p;
+        int desc;
+    };
 
 public:
     Peer();
     void parseArgs(int argc, char* argv[]);
     void displayInfo();
-    void download(int noOfChunks, long long lastChunkSize, string hash, vector<string> users, string destination);
-    void download_file(int noOfChunks, long long lastChunkSize, string hash, vector<string> users, string destination);
-    void getFileInfo(vector<vector<string>>& fileData, string hash, string ip, int port);
-    void download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, unordered_set<string>& us, string hash, string destination);
 
-    // Peer <--> Tracker communication methods
+    // ================================ Peer <--> Tracker communication methods ===================
     void connectToTracker();
     void communicateWithTracker();
     void processInput(vector<string>& words, string& input);
     void processReply(vector<string>& words, string& reply);
 
-    // Peer <--> Peer communication Methods
+    // ================================= Peer <--> Peer communication Methods =====================
     void connectToPeer();
     void peerAsServer(int desc);
     void processCommand(string command, int desc);
     string communicateWithPeer(string message, string ip, int port);
 
+    // ================================= Download_file helpers ====================================
+    void download(int noOfChunks, long long lastChunkSize, string hash, vector<string> users, string destination);
+    void download_file(int noOfChunks, long long lastChunkSize, string hash, vector<string> users, string destination);
+    void getFileInfo(vector<vector<string>>& fileData, string hash, string ip, int port);
+    void download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, unordered_set<string>& us, string hash, string destination);
+
+    // ===================================== Thread Helpers =======================================
     static void* createServer(void* ptr) {
         ((Peer*)ptr)->connectToPeer();
         return 0;
     }
+
     static void* peerServerHandler(void* ptr) {
         int desc = ((struct threadArgs*)ptr)->desc;
         ((struct threadArgs*)ptr)->p->peerAsServer(desc);
@@ -305,7 +309,7 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     // Find which chunks are available at which peer
     vector<thread> userThreads;
     for (int i = 0; i < users.size(); i++) {
-        // cout << "users[i]: " << users[i] << endl;    
+        cout << "users[i]: " << users[i] << endl;
         int j = users[i].find_last_of(':');
         string ip = users[i].substr(0, j);
         int port = stoi(users[i].substr(j + 1));

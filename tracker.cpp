@@ -19,14 +19,17 @@ class Tracker {
 
 public:
     void parseArgs(int argc, char* argv[]);
+    void displayInfo();
+    
     // Spawn new thread for exiting the server using "quit"
     void exitThread();
+
+    // =========================== Tracker <--> Peer communication methods ========================
     void connectToPeer();
     void trackerAsServer(int desc);
-    void displayInfo();
     void processCommand(string command, int desc);
 
-    // Command methods
+    // =================================== Command methods ========================================
     void create_user(string username, string password, int desc);
     void login(string username, string password, string ip, string port, int desc);
     void logout(string username, int desc);
@@ -41,9 +44,10 @@ public:
     void list_files(string group_name, int desc);
     void download_file(string group_name, string file_name, string destination, string username, int desc);
 
-    // Utitlity methods
+    // ================================== Utitlity methods ========================================
     void file_info(string file_name, string username, int desc);
 
+    // ================================== Thread helpers ==========================================
     static void* serverHandler(void* ptr) {
         int desc = ((struct threadArgs*)ptr)->desc;
         ((struct threadArgs*)ptr)->t->trackerAsServer(desc);
@@ -500,7 +504,7 @@ void Tracker::download_file(string group_name, string file_name, string destinat
         reply = KYEL "Join the group to download the files" RESET;
     }
     else if (allGroups[group_name].admin != username && allGroups[group_name].members[username] == 0) {
-        reply = KYEL "Your group join request was not accepted by admin. Wait for admin's approval to download the files" RESET;
+        reply = KYEL "You're not part of the group" RESET;
     }
     // else if (!validFilePath(file_name)) {
     //     reply = KRED "Enter valid file path" RESET;
@@ -520,6 +524,10 @@ void Tracker::download_file(string group_name, string file_name, string destinat
             bool flag = true;
             for (int i = 0; i < reqFile.users.size(); i++) {
                 string user = reqFile.users[i];
+                if (user == username) {
+                    reply = KYEL "You already have the file" RESET;
+                    break;
+                }
                 if (flag) {
                     reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
                     flag = false;
