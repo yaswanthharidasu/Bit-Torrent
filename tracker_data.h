@@ -2,6 +2,7 @@
 #define __TRACKER_DATA_H_
 
 #include<vector>
+#include<deque>
 #include<unordered_map>
 #include<thread>
 using namespace std;
@@ -23,7 +24,7 @@ struct fileInfo {
 
 struct groupInfo {
     string admin;
-    vector<string> acceptedMembers;
+    deque<string> acceptedMembers;
     unordered_map<string, int> members;
 
     ///////////// FILE_NAME ////
@@ -37,8 +38,10 @@ struct groupInfo {
 
 ///////////// PEER_NAME,INFO ///////////
 unordered_map<string, peerInfo> allPeers;
+
 ///////////// GROUP_NAME,INFO //////////
 unordered_map<string, groupInfo> allGroups;
+
 ///////////// FILE_NAME,INFO ///////////
 unordered_map<string, fileInfo> allFiles;
 

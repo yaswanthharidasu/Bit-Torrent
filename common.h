@@ -44,10 +44,13 @@ using namespace std;
 #define UPLOAD_FILE "upload_file"
 #define LIST_FILES "list_files"
 #define DOWNLOAD_FILE "download_file"
+#define SHOW_DOWNLOADS "show_downloads"
 
 // Extra macros
 #define FILE_INFO "file_info"
+#define GET_CHUNK_INFO "get_chunk_info"
 #define DOWNLOAD_CHUNK "download_chunk"
+#define CHUNK_UNAVAILABLE "chunk_unavailable"
 #define OFFLINE "offline"
 #define DOWNLOAD_CHUNK_SUCCESS KGRN "Downloaded chunk successfully" RESET
 #define DOWNLOAD_CHUNK_FAILED KRED "Failed to download the chunk" RESET

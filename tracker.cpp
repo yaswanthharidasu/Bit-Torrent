@@ -20,7 +20,7 @@ class Tracker {
 public:
     void parseArgs(int argc, char* argv[]);
     void displayInfo();
-    
+
     // Spawn new thread for exiting the server using "quit"
     void exitThread();
 
@@ -401,8 +401,32 @@ void Tracker::leave_group(string group_name, string username, int desc) {
     else if (allGroups.find(group_name) == allGroups.end()) {
         reply = KRED "Group doesn't exists" RESET;
     }
+    // Admin leaving the group
     else if (allGroups[group_name].admin == username) {
-        reply = KYEL "You're admin of the group. No need to join again" RESET;
+        // If there are other memebers in the group
+        if (allGroups[group_name].acceptedMembers.size() != 0) {
+            // Making the next user as admin
+            allGroups[group_name].admin = allGroups[group_name].acceptedMembers.front();
+            // Removing next users from list
+            allGroups[group_name].acceptedMembers.pop_front();
+        }
+        else {
+            // Deleted the group
+            allGroups.erase(group_name);
+        }
+        reply = KYEL "You left the group and no longer part of it" RESET;
+    }
+    else if (allGroups[group_name].members.find(username) == allGroups[group_name].members.end()) {
+        reply = KYEL "You're not part of the group to exit" RESET;
+    }
+    else {
+        // Removing user from the unordered_map, which stores users.
+        allGroups[group_name].members.erase(username);
+        // Removing user from the deque, which stores users in the order they're accepted.
+        auto it = find(allGroups[group_name].acceptedMembers.begin(), allGroups[group_name].acceptedMembers.end(), username);
+        if (it != allGroups[group_name].acceptedMembers.end())
+            allGroups[group_name].acceptedMembers.erase(it);
+        reply = KGRN "You left the group and no longer part of it" RESET;
     }
     send(desc, &reply[0], reply.length(), 0);
 }

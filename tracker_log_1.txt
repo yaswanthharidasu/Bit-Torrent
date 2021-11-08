@@ -7,10 +7,6 @@ Incoming connection from IP: 127.0.0.1 PORT: 4000User 'yash' registered succesfu
 User 'yash'logged in with IP ADDR: 127.0.0.1 PORT: 4000
 Incoming connection from IP: 127.0.0.1 PORT: 4001User 'hari' registered succesfully
 User 'hari'logged in with IP ADDR: 127.0.0.1 PORT: 4001
-Download_file: $127.0.0.1:4001 171 180636Incoming connection from IP: 127.0.0.1 PORT: 4002User 'yaswanth' registered succesfully
+Download_file: $127.0.0.1:4001 10 38253Incoming connection from IP: 127.0.0.1 PORT: 4002User 'yaswanth' registered succesfully
 User 'yaswanth'logged in with IP ADDR: 127.0.0.1 PORT: 4002
-Download_file: $127.0.0.1:4001 127.0.0.1:4000 171 180636Incoming connection from IP: 127.0.0.1 PORT: 4003User 'haridasu' registered succesfully
-User 'haridasu'logged in with IP ADDR: 127.0.0.1 PORT: 4003
-Download_file: $127.0.0.1:4001 127.0.0.1:4000 127.0.0.1:4002 171 180636Incoming connection from IP: 127.0.0.1 PORT: 4004User 'aditya' registered succesfully
-User 'aditya'logged in with IP ADDR: 127.0.0.1 PORT: 4004
-Download_file: $127.0.0.1:4001 127.0.0.1:4000 127.0.0.1:4002 127.0.0.1:4003 171 180636
+Download_file: $127.0.0.1:4001 127.0.0.1:4000 10 38253
