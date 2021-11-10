@@ -486,10 +486,12 @@ void Tracker::upload_file(string file_path, string group_name, string username, 
             // Storing <file_name> in the group
             allGroups[group_name].files.insert(file_name);
             // Storing <file_name, fileInfo> in allFiles
+            string hash = SHA1::from_file(file_path);
             fileInfo newFile;
             newFile.location = file_path;
-            chunkDetails(file_path, newFile.noOfChunks, newFile.lastChunkSize);
             newFile.users.push_back(username);
+            newFile.hash = hash;
+            chunkDetails(file_path, newFile.noOfChunks, newFile.lastChunkSize);
             allFiles[file_name] = newFile;
             reply = UPLOAD_FILE_SUCCESS;
         }
@@ -558,14 +560,20 @@ void Tracker::download_file(string group_name, string file_name, string destinat
                     break;
                 }
                 if (flag) {
-                    reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
-                    flag = false;
+                    // Sending only logged in users
+                    if (allPeers[user].loggedIn) {
+                        reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                        flag = false;
+                    }
                 }
                 else {
-                    reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                    if (allPeers[user].loggedIn) {
+                        reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                    }
                 }
             }
             reply += " " + to_string(allFiles[file_name].noOfChunks) + " " + to_string(allFiles[file_name].lastChunkSize);
+            reply += " " + allFiles[file_name].hash;
             log.printLog("Download_file: " + reply);
             // Storing the user who is downloading the file even though the user hasn't started downloading yet.
             allFiles[file_name].users.push_back(username);

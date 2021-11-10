@@ -21,8 +21,7 @@ class Peer {
     struct sockaddr_in peerServerAddr, peerPeerAddr;
 
     struct fileInfo {
-        ///// GROUP_NAME, STOP_SHARE /////
-        unordered_map<string, bool> group;
+        bool share;
         string hash;
         string location;
         int noOfChunks;
@@ -31,7 +30,10 @@ class Peer {
     };
 
     ///////////// FILE_NAME, INFO ////////
-    unordered_map<string, fileInfo> files;
+    // unordered_map<string, fileInfo> files;
+
+    ///////////// GROUP_NAME ///////// FILE_NAME, INFO ///////////
+    unordered_map<string, unordered_map<string, fileInfo>> groups;
 
     ////////// FILE_NAME, GROUP_NAME ////////
     unordered_map<string, string> downloading;
@@ -61,10 +63,10 @@ public:
     string communicateWithPeer(string message, string ip, int port);
 
     // ================================= Download_file helpers ====================================
-    void download(int noOfChunks, long long lastChunkSize, string hash, vector<string> users, string destination);
-    void download_file(int noOfChunks, long long lastChunkSize, string hash, vector<string> users, string destination);
-    void getFileInfo(vector<vector<string>>& fileData, string hash, string ip, int port);
-    void download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, unordered_set<string>& us, string hash, string destination);
+    void download(string hash, int noOfChunks, long long lastChunkSize, string group_name, string file_name, vector<string> users, string destination);
+    void download_file(string hash, int noOfChunks, long long lastChunkSize, string group_name, string file_name, vector<string> users, string destination);
+    void getFileInfo(vector<vector<string>>& fileData, string file_name, string group_name, string ip, int port);
+    void download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, string hash, string destination, string group_name);
     void show_downloads();
     void stop_share(string group_name, string file_name);
 
@@ -225,29 +227,34 @@ void Peer::processReply(vector<string>& words, string& reply) {
     else if (words[0] == UPLOAD_FILE && (reply == UPLOAD_FILE_SUCCESS || reply == UPLOAD_FILE_EXISTS)) {
         // Storing the file details on the peer side
         string hash = SHA1::from_file(words[1]);
+
         fileInfo newFile;
         newFile.location = words[1];
         newFile.hash = hash;
-        // Peer can send that file to those group members or not.
-        newFile.group[words[2]] = true;
+        newFile.share = true;
+
         string file_name = getFileName(words[1]);
         chunkDetails(words[1], newFile.noOfChunks, newFile.lastChunkSize);
+
         // As this peer is uploading the file, it'll have all the chunks
         for (int i = 0; i < newFile.noOfChunks; i++) {
             newFile.availableChunks.push_back(true);
         }
-        files[file_name] = newFile;
+        groups[words[2]][file_name] = newFile;
+        // files[file_name] = newFile;
     }
     else if (words[0] == DOWNLOAD_FILE && reply[0] == '$') {
         // Removing '$' at the start
         reply = reply.substr(1);
         vector<string> users = splitString(reply);
-
+        string hash = users.back();
+        users.pop_back();
         long long lastChunkSize = stoll(users.back());
         users.pop_back();
         int noOfChunks = stoi(users.back());
         users.pop_back();
         // Removing no.of chunks
+        string group_name = words[1];
         string file_name = words[2];
         string destination = words[3] + "/" + file_name;
 
@@ -258,7 +265,7 @@ void Peer::processReply(vector<string>& words, string& reply) {
         // Updating the download files list: file_name and group name
         downloading[file_name] = words[1];
 
-        download(noOfChunks, lastChunkSize, file_name, users, destination);
+        download(hash, noOfChunks, lastChunkSize, group_name, file_name, users, destination);
         cout << KGRN "Started Downloading..." RESET << endl;
     }
     else if ((words[0] == "send_message")) {
@@ -332,24 +339,26 @@ void Peer::show_downloads() {
 }
 
 void Peer::stop_share(string group_name, string file_name) {
-
+    groups[group_name][file_name].share = false;
 }
 
-void Peer::download(int noOfChunks, long long lastChunkSize, string file_name, vector<string> users, string destination) {
+void Peer::download(string hash, int noOfChunks, long long lastChunkSize, string group_name, string file_name, vector<string> users, string destination) {
     // Multiple files can be downloaded at the same time.
     // Hence, creating thread for each download
-    thread t(&Peer::download_file, this, noOfChunks, lastChunkSize, file_name, users, destination);
+    thread t(&Peer::download_file, this, hash, noOfChunks, lastChunkSize, group_name, file_name, users, destination);
     t.detach();
 }
 
-void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_name, vector<string> users, string destination) {
+void Peer::download_file(string hash, int noOfChunks, long long lastChunkSize, string group_name, string file_name, vector<string> users, string destination) {
     fileInfo newFile;
     newFile.location = destination;
     newFile.noOfChunks = noOfChunks;
     newFile.lastChunkSize = lastChunkSize;
+    newFile.share = true;
     vector<bool> availableChunks(noOfChunks, false);
     newFile.availableChunks = availableChunks;
-    files[file_name] = newFile;
+    groups[group_name][file_name] = newFile;
+    // files[file_name] = newFile;
 
     // Creating string of vectors for each chunk
     // Chunk1 -> IP:PORT, IP:PORT....
@@ -364,7 +373,7 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
         int j = users[i].find_last_of(':');
         string ip = users[i].substr(0, j);
         int port = stoi(users[i].substr(j + 1));
-        userThreads.push_back(thread(&Peer::getFileInfo, this, std::ref(fileData), file_name, ip, port));
+        userThreads.push_back(thread(&Peer::getFileInfo, this, std::ref(fileData), file_name, group_name, ip, port));
     }
     for (int i = 0; i < userThreads.size(); i++) {
         userThreads[i].join();
@@ -387,7 +396,6 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     // Sort the chunks based on their availability
     // Rarest chunks will be at starting indices after sorting
     sort(fileData.begin(), fileData.end(), compareSizes);
-    unordered_set<string> us;
 
     // char file[noOfChunks - 1][CHUNK_SIZE];
     // char last[1][CHUNK_SIZE];
@@ -395,10 +403,10 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     // Now download each chunk 
     for (int i = 0; i < fileData.size(); i++) {
         if (i == fileData.size() - 1) {
-            userThreads.push_back(thread(&Peer::download_chunk, this, i, lastChunkSize, std::ref(fileData[i]), std::ref(us), file_name, destination));
+            userThreads.push_back(thread(&Peer::download_chunk, this, i, lastChunkSize, std::ref(fileData[i]), file_name, destination, group_name));
         }
         else {
-            userThreads.push_back(thread(&Peer::download_chunk, this, i, CHUNK_SIZE, std::ref(fileData[i]), std::ref(us), file_name, destination));
+            userThreads.push_back(thread(&Peer::download_chunk, this, i, CHUNK_SIZE, std::ref(fileData[i]), file_name, destination, group_name));
         }
     }
 
@@ -410,11 +418,18 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     completed[file_name] = downloading[file_name];
     // Removing from the downloading list
     downloading.erase(file_name);
+
+    // Checking hash 
+    string dest_hash = SHA1::from_file(destination);
+    if (dest_hash == hash) {
+        groups[group_name][file_name].hash = hash;
+        log.printLog("File " + file_name + " Downloaded correctly\n");
+    }
 }
 
-void Peer::getFileInfo(vector<vector<string>>& fileData, string file_name, string ip, int port) {
+void Peer::getFileInfo(vector<vector<string>>& fileData, string file_name, string group_name, string ip, int port) {
     string message = GET_FILE_INFO;
-    message += " " + file_name;
+    message += " " + file_name + " " + group_name;
     string reply = communicateWithPeer(message, ip, port);
     // cout << "Reply: " << reply << endl;
     if (reply != OFFLINE) {
@@ -430,7 +445,7 @@ void Peer::getFileInfo(vector<vector<string>>& fileData, string file_name, strin
     }
 }
 
-void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, unordered_set<string>& us, string file_name, string destination) {
+void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, string file_name, string destination, string group_name) {
     bool downloaded = false;
     int tries = 0;
     while (!downloaded) {
@@ -453,18 +468,19 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
 
         int i = rand() % chunkData.size();
         string message;
-        // Command: download_chunk <file_hash> <destination> <chunk_no> <chunk_size>
-        message += DOWNLOAD_CHUNK " " + file_name + " " + destination + " " + to_string(chunk_no) + " " + to_string(chunk_size);
+        // Command: download_chunk <file_hash> <destination> <chunk_no> <chunk_size> <group_name>
+        message += DOWNLOAD_CHUNK " " + file_name + " " + destination + " " + to_string(chunk_no) + " " + to_string(chunk_size) + " " + group_name;
         int j = chunkData[i].find_last_of(':');
         string ip = chunkData[i].substr(0, j);
         int port = stoi(chunkData[i].substr(j + 1));
-        log.printLog("Downloading file | " + file_name + " of chunk " + to_string(chunk_no) + " from IP: " + ip + " PORT: " + to_string(port) + "\n");
+        // log.printLog("Trying to download file | " + file_name + " of chunk " + to_string(chunk_no) + " from IP: " + ip + " PORT: " + to_string(port) + "\n");
         // cout << chunk_no << " " << ip << " " << port << endl;
         string reply = communicateWithPeer(message, ip, port);
         if (reply == DOWNLOAD_CHUNK_SUCCESS) {
-            log.printLog("Reply for file | " + file_name + " of chunk " + to_string(chunk_no) + ": Download Success \n");
+            log.printLog("Downloaded Success | " + file_name + " of chunk " + to_string(chunk_no) + " from IP: " + ip + " PORT: " + to_string(port) + "\n");
             // cout << "reply: " << reply << endl;
-            files[file_name].availableChunks[chunk_no] = true;
+            groups[group_name][file_name].availableChunks[chunk_no] = true;
+            // files[file_name].availableChunks[chunk_no] = true;
             downloaded = true;
             break;
         }
@@ -618,27 +634,27 @@ void Peer::processCommand(string command, int desc) {
         reply = "Received your message";
     }
     else if (words[0] == GET_FILE_INFO) {
+        // Command: get_file_info <file_name> <group_name>
         if (loggedIn == false) {
             reply = OFFLINE;
         }
         else {
-            fileInfo info = files[words[1]];
+            // fileInfo info = files[words[1]];
+            fileInfo info = groups[words[2]][words[1]];
             reply += to_string(info.noOfChunks);
             for (int i = 0; i < info.availableChunks.size(); i++) {
                 reply += " " + to_string(int(info.availableChunks[i]));
             }
         }
     }
-    else if (words[0] == GET_CHUNK_INFO) {
-
-    }
     else if (words[0] == DOWNLOAD_CHUNK) {
-        if (loggedIn == false) {
+        // Command: download_chunk <file_name> <destination> <chunk_no> <chunk_size> <group_name>
+        if (loggedIn == false || groups[words[5]][words[1]].share == false) {
             reply = OFFLINE;
         }
         else {
-            // Command: download_chunk <file_name> <destination> <chunk_no> <chunk_size>
-            fileInfo reqFile = files[words[1]];
+            // fileInfo reqFile = files[words[1]];
+            fileInfo reqFile = groups[words[5]][words[1]];
             int chunk_no = stoi(words[3]);
             long long chunkSize = stoll(words[4]);
             char buff[CHUNK_SIZE];
