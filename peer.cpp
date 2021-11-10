@@ -21,6 +21,8 @@ class Peer {
     struct sockaddr_in peerServerAddr, peerPeerAddr;
 
     struct fileInfo {
+        ///// GROUP_NAME, STOP_SHARE /////
+        unordered_map<string, bool> group;
         string hash;
         string location;
         int noOfChunks;
@@ -64,6 +66,7 @@ public:
     void getFileInfo(vector<vector<string>>& fileData, string hash, string ip, int port);
     void download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, unordered_set<string>& us, string hash, string destination);
     void show_downloads();
+    void stop_share(string group_name, string file_name);
 
     // ===================================== Thread Helpers =======================================
     static void* createServer(void* ptr) {
@@ -158,7 +161,7 @@ void Peer::communicateWithTracker() {
             continue;
         vector<string> words;
         processInput(words, input);
-        if (words[0] == SHOW_DOWNLOADS)
+        if (words[0] == SHOW_DOWNLOADS || words[0] == STOP_SHARE)
             continue;
         send(tracker_desc, &input[0], input.length(), 0);
         memset(reply, 0, sizeof(reply));
@@ -182,27 +185,25 @@ void Peer::processInput(vector<string>& words, string& input) {
         words[0] == LEAVE_GROUP ||
         words[0] == LIST_REQUESTS ||
         words[0] == ACCEPT_REQUEST ||
-        words[0] == DOWNLOAD_FILE
+        words[0] == DOWNLOAD_FILE ||
+        words[0] == UPLOAD_FILE
         ) {
         input += " " + username;
     }
-    else if (words[0] == UPLOAD_FILE) {
-        // Storing the file details on the peer side
-        string hash = SHA1::from_file(words[1]);
-        fileInfo newFile;
-        newFile.location = words[1];
-        newFile.hash = hash;
-        string file_name = getFileName(words[1]);
-        chunkDetails(words[1], newFile.noOfChunks, newFile.lastChunkSize);
-        // As this peer is uploading the file, it'll have all the chunks
-        for (int i = 0; i < newFile.noOfChunks; i++) {
-            newFile.availableChunks.push_back(true);
-        }
-        files[file_name] = newFile;
-        input += " " + username + " " + hash + " " + to_string(newFile.noOfChunks) + " " + to_string(newFile.lastChunkSize);
-    }
     else if (words[0] == SHOW_DOWNLOADS) {
-        show_downloads();
+        if (words.size() != 1) {
+            cout << KYEL "Invalid Arguments" RESET << endl;
+        }
+        else {
+            show_downloads();
+        }
+    }
+    else if (words[0] == STOP_SHARE) {
+        if (words.size() != 3)
+            cout << KYEL "Invalid Arguments" RESET << endl;
+        else {
+            stop_share(words[1], words[2]);
+        }
     }
 }
 
@@ -220,6 +221,22 @@ void Peer::processReply(vector<string>& words, string& reply) {
         username = "###";
         password = "###";
         loggedIn = false;
+    }
+    else if (words[0] == UPLOAD_FILE && (reply == UPLOAD_FILE_SUCCESS || reply == UPLOAD_FILE_EXISTS)) {
+        // Storing the file details on the peer side
+        string hash = SHA1::from_file(words[1]);
+        fileInfo newFile;
+        newFile.location = words[1];
+        newFile.hash = hash;
+        // Peer can send that file to those group members or not.
+        newFile.group[words[2]] = true;
+        string file_name = getFileName(words[1]);
+        chunkDetails(words[1], newFile.noOfChunks, newFile.lastChunkSize);
+        // As this peer is uploading the file, it'll have all the chunks
+        for (int i = 0; i < newFile.noOfChunks; i++) {
+            newFile.availableChunks.push_back(true);
+        }
+        files[file_name] = newFile;
     }
     else if (words[0] == DOWNLOAD_FILE && reply[0] == '$') {
         // Removing '$' at the start
@@ -314,6 +331,10 @@ void Peer::show_downloads() {
     }
 }
 
+void Peer::stop_share(string group_name, string file_name) {
+
+}
+
 void Peer::download(int noOfChunks, long long lastChunkSize, string file_name, vector<string> users, string destination) {
     // Multiple files can be downloaded at the same time.
     // Hence, creating thread for each download
@@ -335,7 +356,7 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     vector<vector<string>> fileData(noOfChunks);
     // Find which chunks are available at which peer
     vector<thread> userThreads;
-    log.printLog("===================\nFile Info from Tracker: \n");
+    log.printLog("========================================================\nFile Info from Tracker: \n");
     // cout << "File info from Tracker:" << endl;
     for (int i = 0; i < users.size(); i++) {
         log.printLog("User: " + users[i] + "\n");
@@ -350,10 +371,10 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     }
     userThreads.clear();
 
-    log.printLog("===================\nChunk Info from Peers: \n");
+    log.printLog("========================================================\nChunk Info from Peers: \n");
     for (int i = 0; i < fileData.size(); i++) {
         // cout << "Chunk " << i << ": ";
-        log.printLog("Chunk " + to_string(i) + " ");
+        log.printLog("File " + file_name + " | Chunk " + to_string(i) + ": ");
         for (auto it : fileData[i]) {
             // cout << it << "\t";
             log.printLog(it + " ");
@@ -361,6 +382,7 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
         // cout << endl;
         log.printLog("\n");
     }
+    log.printLog("========================================================\n");
 
     // Sort the chunks based on their availability
     // Rarest chunks will be at starting indices after sorting
@@ -415,7 +437,7 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
         // No peers to send the chunk
         while (chunkData.size() == 0 || (tries == 2 * chunkData.size())) {
             // Communicate with the tracker to get the chunk info
-            log.printLog("File " + file_name + ": Waiting for others to upload \n");
+            log.printLog("File " + file_name + " | Waiting for others to upload \n");
             string message = GET_CHUNK_INFO " " + file_name + " " + username;
             string reply = communicateWithPeer(message, trackerIP, trackerPort);
             // cout << "download_chunk: " << reply << endl;
@@ -423,9 +445,9 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
             vector<string> words = splitString(reply);
             chunkData = words;
             // If still there are no peers to send the chunk
-            if (chunkData.size() == 0) {
-                this_thread::sleep_for(chrono::seconds(5));
-            }
+            // if (chunkData.size() == 0) {
+            this_thread::sleep_for(chrono::seconds(5));
+            // }
             tries = 0;
         }
 
@@ -436,11 +458,11 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
         int j = chunkData[i].find_last_of(':');
         string ip = chunkData[i].substr(0, j);
         int port = stoi(chunkData[i].substr(j + 1));
-        log.printLog("Downloading chunk " + to_string(chunk_no) + " from IP: " + ip + " PORT: " + to_string(port) + "\n");
+        log.printLog("Downloading file | " + file_name + " of chunk " + to_string(chunk_no) + " from IP: " + ip + " PORT: " + to_string(port) + "\n");
         // cout << chunk_no << " " << ip << " " << port << endl;
         string reply = communicateWithPeer(message, ip, port);
         if (reply == DOWNLOAD_CHUNK_SUCCESS) {
-            log.printLog("Reply for chunk " + to_string(chunk_no) + ": Download Success \n");
+            log.printLog("Reply for file | " + file_name + " of chunk " + to_string(chunk_no) + ": Download Success \n");
             // cout << "reply: " << reply << endl;
             files[file_name].availableChunks[chunk_no] = true;
             downloaded = true;
@@ -472,7 +494,7 @@ string Peer::communicateWithPeer(string message, string ip, int port) {
     serverAddr.sin_port = htons(port);
     // serverAddr.sin_addr.s_addr = INADDR_ANY;
     if (inet_pton(AF_INET, &ip[0], &serverAddr.sin_addr.s_addr) != 1) {
-        perror("pton");
+        perror("pton failure");
         exit(1);
     }
 

@@ -45,6 +45,7 @@ using namespace std;
 #define LIST_FILES "list_files"
 #define DOWNLOAD_FILE "download_file"
 #define SHOW_DOWNLOADS "show_downloads"
+#define STOP_SHARE "stop_share"
 
 // Extra macros
 #define GET_FILE_INFO "get_file_info"
@@ -52,11 +53,14 @@ using namespace std;
 #define DOWNLOAD_CHUNK "download_chunk"
 #define CHUNK_UNAVAILABLE "chunk_unavailable"
 #define OFFLINE "offline"
+
 #define DOWNLOAD_CHUNK_SUCCESS KGRN "Downloaded chunk successfully" RESET
 #define DOWNLOAD_CHUNK_FAILED KRED "Failed to download the chunk" RESET
 #define USER_REGISTER_SUCCESS KGRN "Registration completed successfully" RESET
 #define GROUP_REGISTER_SUCCESS KGRN "Created group successfully" RESET
 #define GROUP_JOIN_SUCCESS KGRN "Sent the join request, wait for the admin's approval" RESET
+#define UPLOAD_FILE_SUCCESS KGRN "Uploaded the file in the group successfully" RESET
+#define UPLOAD_FILE_EXISTS KYEL "File already exists in the group. No need to upload again" RESET
 #define LOGIN_SUCCESS KGRN "Logged in successfully" RESET
 #define LOGOUT_SUCCESS KGRN "Logged out successfully" RESET
 

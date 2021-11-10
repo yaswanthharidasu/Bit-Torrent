@@ -2,40 +2,81 @@ Socket Created
 Socket options set
 Binded the socket
 Listening...
-File Info from Tracker: 
-User: 127.0.0.1:4001
-Chunk Info from Peers: 
-Chunk 0 127.0.0.1:4001 
-Chunk 1 127.0.0.1:4001 
-Chunk 2 127.0.0.1:4001 
-Chunk 3 127.0.0.1:4001 
-Chunk 4 127.0.0.1:4001 
-Chunk 5 127.0.0.1:4001 
-Chunk 6 127.0.0.1:4001 
-Chunk 7 127.0.0.1:4001 
-Chunk 8 127.0.0.1:4001 
-Chunk 9 127.0.0.1:4001 
-Downloading chunk 6 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 3 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 5 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 4 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 2 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 7 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 9 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 8 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 1 from IP: 127.0.0.1 PORT: 4001
-Downloading chunk 0 from IP: 127.0.0.1 PORT: 4001
-Reply for chunk 9: Download Success 
-Reply for chunk 3: Download Success 
-Reply for chunk 1: Download Success 
-Reply for chunk 7: Download Success 
-Reply for chunk 5: Download Success 
-Reply for chunk 6: Download Success 
-Reply for chunk 2: Download Success 
-Reply for chunk 0: Download Success 
-Reply for chunk 8: Download Success 
-Reply for chunk 4: Download Success 
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 33374
+Incoming connection from IP: 127.0.0.1 PORT: 55932
 ========================================================
 get_file_info shivers.mp3
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56038
+========================================================
+get_file_info shivers.mp3
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56336
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56340
+========================================================
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 8 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56342
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56346
+========================================================
+Chunk 8 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56350
+========================================================
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 9 38253
+
+Chunk 9 of size: 38253
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56354
+========================================================
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 2 524288========================================================
+
+Incoming connection from IP: 127.0.0.1 PORT: 56356
+========================================================
+Chunk 2 of size: 524288download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 7 524288
+Chunk 7 of size: 524288
+
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 1 524288
+Chunk 1 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56360
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56362
+========================================================
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 3 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56364
+========================================================
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 0 524288
+Chunk 3 of size: 524288Chunk 0 of size: 524288
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 4 524288
+Chunk 4 of size: 524288download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 5 524288
+Chunk 5 of size: 524288
+
+
+download_chunk shivers.mp3 /home/yaswanth/Downloads/shivers.mp3 6 524288
+Chunk 6 of size: 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56374
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56378
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56380
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 56384
+========================================================
+download_chunk shivers.mp3 /home/yaswanth/shivers.mp3 8 524288
+Chunk 8 of size: 524288download_chunk shivers.mp3 /home/yaswanth/shivers.mp3 5 524288
+download_chunk shivers.mp3 /home/yaswanth/shivers.mp3 3 524288
+Chunk 5 of size: 524288Chunk 3 of size: 524288
+
+
+download_chunk shivers.mp3 /home/yaswanth/shivers.mp3 2 524288
+Chunk 2 of size: 524288

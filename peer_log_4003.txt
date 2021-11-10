@@ -3,51 +3,297 @@ Socket options set
 Binded the socket
 Listening...
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58856
+File Info from Tracker: 
+User: 127.0.0.1:4000
+User: 127.0.0.1:4001
+User: 127.0.0.1:4002
+========================================================
+Chunk Info from Peers: 
+File shivers.mp3 Chunk 0: 
+File shivers.mp3 Chunk 1: 
+File shivers.mp3 Chunk 2: 
+File shivers.mp3 Chunk 3: 
+File shivers.mp3 Chunk 4: 
+File shivers.mp3 Chunk 5: 
+File shivers.mp3 Chunk 6: 
+File shivers.mp3 Chunk 7: 
+File shivers.mp3 Chunk 8: 
+File shivers.mp3 Chunk 9: 
+========================================================
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+Downloading file:shivers.mp3 of chunk 1 from IP: 127.0.0.1 PORT: 4001
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+File shivers.mp3: Waiting for others to upload 
+Downloading file:shivers.mp3 of chunk 3 from IP: 127.0.0.1 PORT: 4000
+Downloading file:shivers.mp3 of chunk 0 from IP: 127.0.0.1 PORT: 4001
+Downloading file:shivers.mp3 of chunk 9 from IP: 127.0.0.1 PORT: 4001
+Downloading file:shivers.mp3 of chunk 5 from IP: 127.0.0.1 PORT: 4001
+Reply for file:shivers.mp3 of chunk 1: Download Success 
+Downloading file:shivers.mp3 of chunk 6 from IP: 127.0.0.1 PORT: 4001
+Downloading file:shivers.mp3 of chunk 7 from IP: 127.0.0.1 PORT: 4000
+Downloading file:shivers.mp3 of chunk 8 from IP: 127.0.0.1 PORT: 4000
+Reply for file:shivers.mp3 of chunk 0: Download Success 
+Reply for file:shivers.mp3 of chunk 9: Download Success 
+Reply for file:shivers.mp3 of chunk 3: Download Success 
+Downloading file:shivers.mp3 of chunk 4 from IP: 127.0.0.1 PORT: 4001
+File shivers.mp3: Waiting for others to upload 
+Reply for file:shivers.mp3 of chunk 8: Download Success 
+Reply for file:shivers.mp3 of chunk 4: Download Success 
+Reply for file:shivers.mp3 of chunk 5: Download Success 
+Downloading file:shivers.mp3 of chunk 2 from IP: 127.0.0.1 PORT: 4001
+Reply for file:shivers.mp3 of chunk 6: Download Success 
+Reply for file:shivers.mp3 of chunk 7: Download Success 
+Reply for file:shivers.mp3 of chunk 2: Download Success 
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60924
 ========================================================
 get_file_info Gusagusale.mp3
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58858
+Incoming connection from IP: 127.0.0.1 PORT: 60926
 ========================================================
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58860
+Incoming connection from IP: 127.0.0.1 PORT: 60928
 ========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 3 524288
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58862
+Incoming connection from IP: 127.0.0.1 PORT: 60930
 ========================================================
-Chunk 3 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58864
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60932
 ========================================================
 download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 1 524288
+Chunk 1 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60934
 ========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58866
 ========================================================
-Chunk 1 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 2 524288
-Chunk 2 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58868
+Incoming connection from IP: 127.0.0.1 PORT: 60936
 ========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 7 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60938
+========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60940
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 4 524288========================================================
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60942
+========================================================
 download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 8 350000
-Chunk 7 of size: 524288Chunk 8 of size: 350000download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 5 524288
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58870
-========================================================
-Chunk 5 of size: 524288========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58872
-========================================================
+Chunk 8 of size: 350000Chunk 4 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 2 524288
+Chunk 2 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 0 524288
 
 
-========================================================
-Incoming connection from IP: 127.0.0.1 PORT: 58874
-========================================================
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 4 524288
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 3 524288
+Chunk 0 of size: 524288Chunk 3 of size: 524288
 
-Chunk 4 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 6 524288
-download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 0 524288
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 7 524288
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 5 524288
+Chunk 7 of size: 524288Chunk 5 of size: 524288
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 6 524288
 Chunk 6 of size: 524288
-Chunk 0 of size: 524288
 
 
-
-
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 60948
+========================================================
+get_file_info Gusagusale.mp3
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 32990
+========================================================
+get_file_info Gusagusale.mp3
