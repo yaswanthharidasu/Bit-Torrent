@@ -27,7 +27,7 @@ public:
     // =========================== Tracker <--> Peer communication methods ========================
     void connectToPeer();
     void trackerAsServer(int desc);
-    void processCommand(string command, int desc);
+    void processCommand(vector<string>& words, int desc);
 
     // =================================== Command methods ========================================
     void create_user(string username, string password, int desc);
@@ -45,7 +45,7 @@ public:
     void download_file(string group_name, string file_name, string destination, string username, int desc);
 
     // ================================== Utitlity methods ========================================
-    void file_info(string file_name, string username, int desc);
+    void chunk_info(string file_name, string username, int desc);
 
     // ================================== Thread helpers ==========================================
     static void* serverHandler(void* ptr) {
@@ -162,12 +162,18 @@ void Tracker::trackerAsServer(int desc) {
         if (strlen(command) <= 0)
             continue;
         puts(command);
-        processCommand(command, desc);
+        string comm = command;
+        vector<string> words = splitString(comm);
+        if (words[0] == GET_CHUNK_INFO) {
+            chunk_info(words[1], words[2], desc);
+            break;
+        }
+        processCommand(words, desc);
     }
+    close(desc);
 }
 
-void Tracker::processCommand(string command, int desc) {
-    vector<string> words = splitString(command);
+void Tracker::processCommand(vector<string>& words, int desc) {
     string reply;
     if ((words[0] == CREATE_USER && words.size() != 3) ||
         (words[0] == LOGIN && words.size() != 5) ||
@@ -224,9 +230,6 @@ void Tracker::processCommand(string command, int desc) {
     }
     else if (words[0] == DOWNLOAD_FILE) {
         download_file(words[1], words[2], words[3], words[4], desc);
-    }
-    else if (words[0] == FILE_INFO) {
-        file_info(words[1], words[2], desc);
     }
     else if (words[0] == "send_message") {
         string user = words[1];
@@ -569,7 +572,7 @@ void Tracker::download_file(string group_name, string file_name, string destinat
     send(desc, &reply[0], reply.length(), 0);
 }
 
-void Tracker::file_info(string file_name, string username, int desc) {
+void Tracker::chunk_info(string file_name, string username, int desc) {
     string reply;
     fileInfo reqFile = allFiles[file_name];
     reply += "$";
@@ -579,15 +582,18 @@ void Tracker::file_info(string file_name, string username, int desc) {
         if (user == username)
             continue;
         if (flag) {
-            reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
-            flag = false;
+            if (allPeers[user].loggedIn) {
+                reply += allPeers[user].ip + ":" + to_string(allPeers[user].port);
+                flag = false;
+            }
         }
         else {
-            reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
+            if (allPeers[user].loggedIn)
+                reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
         }
     }
-    reply += " " + to_string(allFiles[file_name].noOfChunks) + " " + to_string(allFiles[file_name].lastChunkSize);
-    log.printLog("file_info: " + reply);
+    log.printLog("chunk_info: " + reply);
+    send(desc, &reply[0], reply.length(), 0);
 }
 
 int main(int argc, char* argv[]) {

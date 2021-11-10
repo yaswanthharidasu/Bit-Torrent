@@ -7,7 +7,6 @@
 #include<fstream>
 #include<sys/stat.h>
 #include<dirent.h>
-#include<openssl/sha.h>
 
 #define CHUNK_SIZE 524288 // (512*1024) 
 

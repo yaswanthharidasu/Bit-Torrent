@@ -2,3 +2,627 @@ Socket Created
 Socket options set
 Binded the socket
 Listening...
+File Info from Tracker: 
+User: 127.0.0.1:4001
+User: 127.0.0.1:4000
+Chunk Info from Peers: 
+Chunk 0 
+Chunk 1 
+Chunk 2 
+Chunk 3 
+Chunk 4 
+Chunk 5 
+Chunk 6 
+Chunk 7 
+Chunk 8 
+Chunk 9 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+File Info from Tracker: 
+User: 127.0.0.1:4003
+Chunk Info from Peers: 
+Chunk 0 127.0.0.1:4003 
+Chunk 1 127.0.0.1:4003 
+Chunk 2 127.0.0.1:4003 
+Chunk 3 127.0.0.1:4003 
+Chunk 4 127.0.0.1:4003 
+Chunk 5 127.0.0.1:4003 
+Chunk 6 127.0.0.1:4003 
+Chunk 7 127.0.0.1:4003 
+Chunk 8 127.0.0.1:4003 
+Downloading chunk 1 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 3 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 5 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 8 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 2 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 7 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 0 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 4 from IP: 127.0.0.1 PORT: 4003
+Downloading chunk 6 from IP: 127.0.0.1 PORT: 4003
+Reply for chunk 1: Download Success 
+Reply for chunk 3: Download Success 
+Reply for chunk 2: Download Success 
+Reply for chunk 7: Download Success 
+Reply for chunk 6: Download Success 
+Reply for chunk 5: Download Success 
+Reply for chunk 8: Download Success 
+Reply for chunk 4: Download Success 
+Reply for chunk 0: Download Success 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Downloading chunk 2 from IP: 127.0.0.1 PORT: 4001
+Downloading chunk 9 from IP: 127.0.0.1 PORT: 4001
+Waiting for others to upload 
+Downloading chunk 8 from IP: 127.0.0.1 PORT: 4001
+Reply for chunk 2: Download Success 
+Reply for chunk 9: Download Success 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Waiting for others to upload 
+Downloading chunk 0 from IP: 127.0.0.1 PORT: 4001
+Waiting for others to upload 
+Downloading chunk 3 from IP: 127.0.0.1 PORT: 4001
+Reply for chunk 8: Download Success 
+Downloading chunk 1 from IP: 127.0.0.1 PORT: 4001
+Waiting for others to upload 
+Downloading chunk 5 from IP: 127.0.0.1 PORT: 4001
+Reply for chunk 0: Download Success 
+Downloading chunk 4 from IP: 127.0.0.1 PORT: 4001
+Waiting for others to upload 
+Reply for chunk 3: Download Success 
+Reply for chunk 5: Download Success 
+Downloading chunk 6 from IP: 127.0.0.1 PORT: 4001
+Downloading chunk 7 from IP: 127.0.0.1 PORT: 4001
+Reply for chunk 1: Download Success 
+Reply for chunk 4: Download Success 
+Reply for chunk 6: Download Success 
+Reply for chunk 7: Download Success 

@@ -1,5 +1,4 @@
 #include"common.h"
-#include<openssl/sha.h>
 
 class Peer {
     Log log;
@@ -243,6 +242,7 @@ void Peer::processReply(vector<string>& words, string& reply) {
         downloading[file_name] = words[1];
 
         download(noOfChunks, lastChunkSize, file_name, users, destination);
+        cout << KGRN "Started Downloading..." RESET << endl;
     }
     else if ((words[0] == "send_message")) {
         // Create Socket
@@ -318,7 +318,7 @@ void Peer::download(int noOfChunks, long long lastChunkSize, string file_name, v
     // Multiple files can be downloaded at the same time.
     // Hence, creating thread for each download
     thread t(&Peer::download_file, this, noOfChunks, lastChunkSize, file_name, users, destination);
-    t.join();
+    t.detach();
 }
 
 void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_name, vector<string> users, string destination) {
@@ -335,8 +335,11 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     vector<vector<string>> fileData(noOfChunks);
     // Find which chunks are available at which peer
     vector<thread> userThreads;
+    log.printLog("===================\nFile Info from Tracker: \n");
+    // cout << "File info from Tracker:" << endl;
     for (int i = 0; i < users.size(); i++) {
-        cout << "users[i]: " << users[i] << endl;
+        log.printLog("User: " + users[i] + "\n");
+        // cout << "users[i]: " << users[i] << endl;
         int j = users[i].find_last_of(':');
         string ip = users[i].substr(0, j);
         int port = stoi(users[i].substr(j + 1));
@@ -347,12 +350,16 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
     }
     userThreads.clear();
 
+    log.printLog("===================\nChunk Info from Peers: \n");
     for (int i = 0; i < fileData.size(); i++) {
-        cout << "Chunk " << i << ": ";
+        // cout << "Chunk " << i << ": ";
+        log.printLog("Chunk " + to_string(i) + " ");
         for (auto it : fileData[i]) {
-            cout << it << "\t";
+            // cout << it << "\t";
+            log.printLog(it + " ");
         }
-        cout << endl;
+        // cout << endl;
+        log.printLog("\n");
     }
 
     // Sort the chunks based on their availability
@@ -369,8 +376,6 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
             userThreads.push_back(thread(&Peer::download_chunk, this, i, lastChunkSize, std::ref(fileData[i]), std::ref(us), file_name, destination));
         }
         else {
-            // if (i % 2 == 0 && destination == "/home/yaswanth/shivers.mp3")
-            //     continue;
             userThreads.push_back(thread(&Peer::download_chunk, this, i, CHUNK_SIZE, std::ref(fileData[i]), std::ref(us), file_name, destination));
         }
     }
@@ -386,7 +391,7 @@ void Peer::download_file(int noOfChunks, long long lastChunkSize, string file_na
 }
 
 void Peer::getFileInfo(vector<vector<string>>& fileData, string file_name, string ip, int port) {
-    string message = GET_CHUNK_INFO;
+    string message = GET_FILE_INFO;
     message += " " + file_name;
     string reply = communicateWithPeer(message, ip, port);
     // cout << "Reply: " << reply << endl;
@@ -404,10 +409,26 @@ void Peer::getFileInfo(vector<vector<string>>& fileData, string file_name, strin
 }
 
 void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, unordered_set<string>& us, string file_name, string destination) {
-    // FILE* dest = fopen(&destination[0], "w");
     bool downloaded = false;
-    // string file_name = getFileName(destination);
+    int tries = 0;
     while (!downloaded) {
+        // No peers to send the chunk
+        while (chunkData.size() == 0 || (tries == 2 * chunkData.size())) {
+            // Communicate with the tracker to get the chunk info
+            log.printLog("File " + file_name + ": Waiting for others to upload \n");
+            string message = GET_CHUNK_INFO " " + file_name + " " + username;
+            string reply = communicateWithPeer(message, trackerIP, trackerPort);
+            // cout << "download_chunk: " << reply << endl;
+            reply = reply.substr(1);
+            vector<string> words = splitString(reply);
+            chunkData = words;
+            // If still there are no peers to send the chunk
+            if (chunkData.size() == 0) {
+                this_thread::sleep_for(chrono::seconds(5));
+            }
+            tries = 0;
+        }
+
         int i = rand() % chunkData.size();
         string message;
         // Command: download_chunk <file_hash> <destination> <chunk_no> <chunk_size>
@@ -415,14 +436,17 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
         int j = chunkData[i].find_last_of(':');
         string ip = chunkData[i].substr(0, j);
         int port = stoi(chunkData[i].substr(j + 1));
-        cout << chunk_no << " " << ip << " " << port << endl;
+        log.printLog("Downloading chunk " + to_string(chunk_no) + " from IP: " + ip + " PORT: " + to_string(port) + "\n");
+        // cout << chunk_no << " " << ip << " " << port << endl;
         string reply = communicateWithPeer(message, ip, port);
         if (reply == DOWNLOAD_CHUNK_SUCCESS) {
-            cout << "reply: " << reply << endl;
+            log.printLog("Reply for chunk " + to_string(chunk_no) + ": Download Success \n");
+            // cout << "reply: " << reply << endl;
             files[file_name].availableChunks[chunk_no] = true;
             downloaded = true;
             break;
         }
+        tries++;
     }
     // communicateWithPeer();
 }
@@ -571,7 +595,7 @@ void Peer::processCommand(string command, int desc) {
     if (words[0] == "send_message") {
         reply = "Received your message";
     }
-    else if (words[0] == GET_CHUNK_INFO) {
+    else if (words[0] == GET_FILE_INFO) {
         if (loggedIn == false) {
             reply = OFFLINE;
         }
@@ -582,6 +606,9 @@ void Peer::processCommand(string command, int desc) {
                 reply += " " + to_string(int(info.availableChunks[i]));
             }
         }
+    }
+    else if (words[0] == GET_CHUNK_INFO) {
+
     }
     else if (words[0] == DOWNLOAD_CHUNK) {
         if (loggedIn == false) {

@@ -2,3 +2,52 @@ Socket Created
 Socket options set
 Binded the socket
 Listening...
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58856
+========================================================
+get_file_info Gusagusale.mp3
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58858
+========================================================
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58860
+========================================================
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 3 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58862
+========================================================
+Chunk 3 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58864
+========================================================
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 1 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58866
+========================================================
+Chunk 1 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 2 524288
+Chunk 2 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58868
+========================================================
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 7 524288
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 8 350000
+Chunk 7 of size: 524288Chunk 8 of size: 350000download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 5 524288
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58870
+========================================================
+Chunk 5 of size: 524288========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58872
+========================================================
+
+
+========================================================
+Incoming connection from IP: 127.0.0.1 PORT: 58874
+========================================================
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 4 524288
+
+Chunk 4 of size: 524288download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 6 524288
+download_chunk Gusagusale.mp3 /home/yaswanth/Gusagusale.mp3 0 524288
+Chunk 6 of size: 524288
+Chunk 0 of size: 524288
+
+
+
+

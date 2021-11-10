@@ -47,7 +47,7 @@ using namespace std;
 #define SHOW_DOWNLOADS "show_downloads"
 
 // Extra macros
-#define FILE_INFO "file_info"
+#define GET_FILE_INFO "get_file_info"
 #define GET_CHUNK_INFO "get_chunk_info"
 #define DOWNLOAD_CHUNK "download_chunk"
 #define CHUNK_UNAVAILABLE "chunk_unavailable"
