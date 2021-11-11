@@ -1,4 +1,0 @@
-Socket Created
-Socket options set
-Binded the socket
-Listening...
