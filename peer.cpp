@@ -69,6 +69,7 @@ public:
     void download_chunk(int chunk_no, long long chunk_size, vector<string>& chunkData, string hash, string destination, string group_name);
     void show_downloads();
     void stop_share(string group_name, string file_name);
+    void start_share(string group_name, string file_name);
 
     // ===================================== Thread Helpers =======================================
     static void* createServer(void* ptr) {
@@ -163,7 +164,7 @@ void Peer::communicateWithTracker() {
             continue;
         vector<string> words;
         processInput(words, input);
-        if (words[0] == SHOW_DOWNLOADS || words[0] == STOP_SHARE)
+        if (words[0] == SHOW_DOWNLOADS || words[0] == STOP_SHARE || words[0] == START_SHARE)
             continue;
         send(tracker_desc, &input[0], input.length(), 0);
         memset(reply, 0, sizeof(reply));
@@ -205,6 +206,13 @@ void Peer::processInput(vector<string>& words, string& input) {
             cout << KYEL "Invalid Arguments" RESET << endl;
         else {
             stop_share(words[1], words[2]);
+        }
+    }
+    else if (words[0] == START_SHARE) {
+        if (words.size() != 3)
+            cout << KYEL "Invalid Arguments" RESET << endl;
+        else {
+            start_share(words[1], words[2]);
         }
     }
 }
@@ -342,6 +350,10 @@ void Peer::stop_share(string group_name, string file_name) {
     groups[group_name][file_name].share = false;
 }
 
+void Peer::start_share(string group_name, string file_name) {
+    groups[group_name][file_name].share = true;
+}
+
 void Peer::download(string hash, int noOfChunks, long long lastChunkSize, string group_name, string file_name, vector<string> users, string destination) {
     // Multiple files can be downloaded at the same time.
     // Hence, creating thread for each download
@@ -397,9 +409,6 @@ void Peer::download_file(string hash, int noOfChunks, long long lastChunkSize, s
     // Rarest chunks will be at starting indices after sorting
     sort(fileData.begin(), fileData.end(), compareSizes);
 
-    // char file[noOfChunks - 1][CHUNK_SIZE];
-    // char last[1][CHUNK_SIZE];
-
     // Now download each chunk 
     for (int i = 0; i < fileData.size(); i++) {
         if (i == fileData.size() - 1) {
@@ -414,6 +423,33 @@ void Peer::download_file(string hash, int noOfChunks, long long lastChunkSize, s
         userThreads[i].join();
     }
 
+    // Sequentially download first 50 and then next 50 until the entire file is downloaded.
+    // Create only 0 threads at max any time
+    // vector<thread> downloadThreads(50);
+    // int i = 0;
+    // while (i < fileData.size()) {
+    //     int j;
+    //     for (j = 0; j < downloadThreads.size(); j++) {
+    //         if (i == fileData.size() - 1) {
+    //             // log.printLog("chunk | " + to_string(i) + " \n");
+    //             downloadThreads[j] = (thread(&Peer::download_chunk, this, i, lastChunkSize, std::ref(fileData[i]), file_name, destination, group_name));
+    //             i++;
+    //             j++;
+    //             break;
+    //         }
+    //         else {
+    //             // log.printLog("chunk | " + to_string(i) + " \n");
+    //             downloadThreads[j] = (thread(&Peer::download_chunk, this, i, CHUNK_SIZE, std::ref(fileData[i]), file_name, destination, group_name));
+    //         }
+    //         i++;
+    //     }
+    //     for (j = j - 1; j >= 0; j--) {
+    //         // log.printLog("joining | " + to_string(j) + " \n");
+    //         if (downloadThreads[j].joinable())
+    //             downloadThreads[j].join();
+    //     }
+    // }
+
     // File completed downloading. Adding it to the completed list
     completed[file_name] = downloading[file_name];
     // Removing from the downloading list
@@ -422,7 +458,7 @@ void Peer::download_file(string hash, int noOfChunks, long long lastChunkSize, s
     // Checking hash 
     string dest_hash = SHA1::from_file(destination);
     if (dest_hash == hash) {
-        groups[group_name][file_name].hash = hash;
+        groups[group_name][file_name].hash = dest_hash;
         log.printLog("File " + file_name + " Downloaded correctly\n");
     }
 }
@@ -465,7 +501,7 @@ void Peer::download_chunk(int chunk_no, long long chunk_size, vector<string>& ch
             // }
             tries = 0;
         }
-
+        // log.printLog("IN download chunk: " + to_string(chunk_no) + " \n");
         int i = rand() % chunkData.size();
         string message;
         // Command: download_chunk <file_hash> <destination> <chunk_no> <chunk_size> <group_name>

@@ -137,7 +137,7 @@ void Tracker::connectToPeer() {
             KYEL, RESET, inet_ntoa(peerAddr.sin_addr), KYEL, RESET, ntohs(peerAddr.sin_port), KGRN, RESET);
 
         log.printLog("Incoming connection from IP: " + string(inet_ntoa(peerAddr.sin_addr))
-            + " PORT: " + to_string(ntohs(peerAddr.sin_port)));
+            + " PORT: " + to_string(ntohs(peerAddr.sin_port)) + "\n");
 
         // Creating threads for each peer
         threadArgs* args = new threadArgs();
@@ -479,7 +479,7 @@ void Tracker::upload_file(string file_path, string group_name, string username, 
     else {
         string file_name = getFileName(file_path);
         if (allGroups[group_name].files.find(file_name) != allGroups[group_name].files.end()) {
-            allFiles[file_name].users.push_back(username);
+            // allFiles[file_name].users.push_back(username);
             reply = UPLOAD_FILE_EXISTS;
         }
         else {
@@ -574,7 +574,7 @@ void Tracker::download_file(string group_name, string file_name, string destinat
             }
             reply += " " + to_string(allFiles[file_name].noOfChunks) + " " + to_string(allFiles[file_name].lastChunkSize);
             reply += " " + allFiles[file_name].hash;
-            log.printLog("Download_file: " + reply);
+            log.printLog("Download_file: " + reply + "\n");
             // Storing the user who is downloading the file even though the user hasn't started downloading yet.
             allFiles[file_name].users.push_back(username);
         }
@@ -602,7 +602,7 @@ void Tracker::chunk_info(string file_name, string username, int desc) {
                 reply += " " + allPeers[user].ip + ":" + to_string(allPeers[user].port);
         }
     }
-    log.printLog("chunk_info: " + reply);
+    log.printLog("chunk_info: " + reply +"\n");
     send(desc, &reply[0], reply.length(), 0);
 }
 

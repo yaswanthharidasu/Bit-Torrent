@@ -46,6 +46,8 @@ using namespace std;
 #define DOWNLOAD_FILE "download_file"
 #define SHOW_DOWNLOADS "show_downloads"
 #define STOP_SHARE "stop_share"
+#define START_SHARE "start_share"
+
 
 // Extra macros
 #define GET_FILE_INFO "get_file_info"

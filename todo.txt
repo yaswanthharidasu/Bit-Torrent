@@ -1,7 +1,0 @@
-- login from terminal 1 & logout
-- Login with same acoount in terminal 2
-- Now try to create group from terminal 1, it is creating but it should not.
-
-2. create_user
-- already login as an user 
-- try to create new user now
