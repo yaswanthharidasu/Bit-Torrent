@@ -5,16 +5,16 @@ Socket Programming, SHA1 hash, Multi-threading in C++
 ### Goal
 In this assignment, I tried to build a group based file sharing system where users can share, download files from the group they belong to and files are downloaded parallely in multiple pieces from multiple peers.
 ### Approach:
-- The file into logical “pieces”, wherein the size of each piece is 512KB.
-     - Suppose the file size is 1024KB, then it is diviede into two pieces of 512KB each
-- Data Integrity: After downloading the complete file, the SHA1 value of the file is calculated and then is checked with the original SHA1 value available on the tracker side to verify the integrity of the file.
-- Authentication: Every user should have an account inorder to download or share the files.
+- <b>File:</b> The file into logical pieces, where the size of each piece is 512KB.
+     - Suppose the file size is 1024KB, then it is divide into two pieces of 512KB each
+- <b>Data Integrity:</b> After downloading the complete file, the SHA1 value of the file is calculated and then is checked with the original SHA1 value available on the tracker side to verify the integrity of the file.
+- <b>Authentication:</b> Every user should have an account inorder to download or share the files.
 
 ### Architecture Overview:
-The Following entities will be present in the network :<br/>
-**1. Server/Tracker :**<br/>
+The Following entities will be present in the network:
+1. Server/Tracker :
      Maintain information of clients with their files(shared by client) to assist the clients for the communication between peers<br/>
-**2. Clients:**<br/>
+2. Clients:
      - User should create an account and register with tracker
      - Login using the user credentials
      - Create Group and hence will become owner of that group<
@@ -25,7 +25,7 @@ The Following entities will be present in the network :<br/>
      - Share file across group: Share the filename and SHA1 hash of the complete file with the tracker
      - Fetch list of all sharable files in a Group
      - Download file
-          - Retrieve peer information from tracker for the file<br/>
+          - Retrieve peer information from tracker for the file
           - Core Part: Download file from multiple peers (different pieces of file from different peers using piece selection algorithm) simultaneously and all the files which client downloads will be shareable to other users in the same group
      - Show downloads
      - Stop sharing file
@@ -54,7 +54,7 @@ eg : ```./client 127.0.0.1 6000 127.0.0.1 5000```
 * creating client2 on another terminal with socket : 127.0.0.1:7000 <br/>
 eg : ```./client 127.0.0.1 7000 127.0.0.1 5000```
 
-#### Command/Functionality on Clinent side 
+#### Commands available for clients 
  **1. Create User Account :** 
  ```
  create_user <user_id> <passwd>
@@ -109,10 +109,11 @@ eg : ```./client 127.0.0.1 7000 127.0.0.1 5000```
  ```
  show_downloads
  ```
- Output format:
-[D] [grp_id] filename
-[C] [grp_id] filename
+ <b>Output format:</b> </br>
+<i>[D] [grp_id] filename </br>
+[C] [grp_id] filename </i></br>
 D(Downloading), C(Complete)
+
 **14. Stop sharing :**
 ```
 stop_share <group_id> <file_name>
