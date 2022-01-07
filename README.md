@@ -3,15 +3,16 @@
 ### Prerequisites
 Socket Programming, SHA1 hash, Multi-threading in C++
 ### Goal
-In this assignment, you need to build a group based file sharing system where users can share, download files from the group they belong to. Download should be parallel with multiple​ pieces from multiple peers.
-### Note:
-- You have to divide the file into logical  “pieces”, wherein the size of each piece should be 512KB.
-- SHA1 : Suppose the file size is 1024KB, then divide it into two pieces of 512KB each and take SHA1 hash of each part, assume that the hashes are HASH1 & HASH2 then the corresponding hash string would be H1H2 , where H1 & H2 are starting 20 characters of HASH1 & HASH2 respectively and hence H1H2 is 40 characters.
-- Authentication for login needs to be done
+In this assignment, I tried to build a group based file sharing system where users can share, download files from the group they belong to and files are downloaded parallely in multiple pieces from multiple peers.
+### Approach:
+- The file into logical “pieces”, wherein the size of each piece is 512KB.
+     - Suppose the file size is 1024KB, then it is diviede into two pieces of 512KB each
+- Data Integrity: After downloading the complete file, the SHA1 value of the file is calculated and then is checked with the original SHA1 value available on the tracker side to verify the integrity of the file.
+- Authentication: Every user should have an account inorder to download or share the files.
 
 ### Architecture Overview:
 The Following entities will be present in the network :<br/>
-**1. Server(or Tracker)( 1 tracker system) :**<br/>
+**1. Server/Tracker :**<br/>
      Maintain information of clients with their files(shared by client) to assist the clients for the communication between peers<br/>
 **2. Clients:**<br/>
 **a.** User should create an account and register with tracker<br/>
@@ -30,8 +31,7 @@ different peers -  piece selection algorithm ) simultaneously and all the files 
 **k.** Show downloads<br/>
 **l.** Stop sharing file<br/>
 **m.** Stop sharing all files(Logout)<br/>
-**n.** Whenever client logins, all previously shared files before logout should
-automatically be on sharing mode<br/>
+**n.** Whenever client logins, all previously shared files before logout should automatically be on sharing mode<br/>
 
 ### How to compile project
 1. go to client directory
@@ -46,7 +46,6 @@ automatically be on sharing mode<br/>
 eg : ./server 127.0.0.1 5000
 ```
 #### To run the Client
-
 ```
 ./client <CLIENT_IP> <CLIENT_PORT> <SERVER_IP> <SERVER_PORT>
 ```
@@ -115,10 +114,10 @@ eg : ```./client 127.0.0.1 7000 127.0.0.1 5000```
 [D] [grp_id] filename
 [C] [grp_id] filename
 D(Downloading), C(Complete)
- **14. Stop sharing :**
- `stop_share <group_id> <file_name>`
+**14. Stop sharing :**
+```
+stop_share <group_id> <file_name>
+```
  
- #### Assumption
+#### Assumption
 * Enter absolute path for files.
-
-   
